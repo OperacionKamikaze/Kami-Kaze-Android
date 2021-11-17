@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GitToolBoxProjectSettings">
+    <option name="commitMessageIssueKeyValidationOverride">
+      <BoolValueOverride>
+        <option name="enabled" value="true" />
+      </BoolValueOverride>
+    </option>
+    <option name="commitMessageValidationConfigOverride">
+      <CommitMessageValidationOverride>
+        <option name="enabled" value="true" />
+        <option name="value">
+          <CommitMessageValidationConfig>
+            <option name="enabled" value="true" />
+            <option name="regexConfig">
+              <RegexConfig>
+                <option name="dotAll" value="true" />
+                <option name="expression" value="(?:Feature|Fix|Performance|Docs|Style|Refactor|Test|Build|Chore|Other|Internal|Revert|Release)(?:\(.*\))?: [A-Z].*+" />
+                <option name="testInput" value="Release(minor | patch | major | full): Versión final." />
+              </RegexConfig>
+            </option>
+          </CommitMessageValidationConfig>
+        </option>
+      </CommitMessageValidationOverride>
+    </option>
+  </component>
+</project>
