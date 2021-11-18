@@ -17,7 +17,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -58,8 +59,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(text = "Hello $name!", modifier = modifier)
-    Text(text = "Hello $name!", modifier = modifier)
-    Text(text = "Hello $name!", modifier = modifier)
 }
 
 @Preview(
@@ -82,6 +81,8 @@ fun DefaultPreview() {
         }
     }
 }*/
+
+/*
 @Composable
 fun DefaultPreview() {
     KamiKazeTheme {
@@ -101,6 +102,32 @@ fun DefaultPreview() {
                 modifier = Modifier
                     .background(Color.Yellow)
                     .weight(2f)
+            )
+            Greeting(
+                name = "Android",
+                modifier = Modifier.background(Color.Cyan)
+            )
+        }
+    }
+}*/
+
+@Composable
+fun DefaultPreview() {
+    KamiKazeTheme {
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Greeting(
+                name = "Android",
+                modifier = Modifier
+                    .background(Color.Red)
+            )
+            Greeting(
+                name = "Android",
+                modifier = Modifier
+                    .background(Color.Yellow)
             )
             Greeting(
                 name = "Android",
