@@ -17,17 +17,26 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import es.miapp.kami_kaze.ui.theme.KamiKazeTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,10 +46,68 @@ class MainActivity : ComponentActivity() {
             KamiKazeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    Greeting(name = "Android")
                 }
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MediaItem() {
+    Column {
+        Box(
+            modifier = Modifier
+                .height(height = 200.dp)
+                .fillMaxSize()
+                .background(color = Color.Red)
+        ) {
+
+        }
+
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colors.secondary)
+                .padding(16.dp)
+        ) {
+            Text(
+                text = "Title 1",
+                style = MaterialTheme.typography.h6
+            )
+        }
+    }
+}
+
+//@Preview(showBackground = true, widthDp = 200, heightDp = 100)
+@Composable
+fun ButtonText() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Hellow World World World World World World World World",
+            fontSize = 25.sp,
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.ExtraBold,
+            fontFamily = FontFamily.Monospace,
+            textDecoration = TextDecoration.LineThrough,
+            textAlign = TextAlign.Center,
+            lineHeight = 2.em,
+            maxLines = 1,
+            softWrap = false,
+            overflow = TextOverflow.Ellipsis,
+            style = MaterialTheme.typography.h4.copy(
+                shadow = Shadow(
+                    offset = Offset(10f, 10f),
+                    blurRadius = 5f,
+                    color = Color.Black.copy(alpha = 0.5f)
+                )
+            )
+        )
     }
 }
 
@@ -58,81 +125,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(text = "Hello $name!", modifier = modifier)
-}
-
-@Preview(
-    showBackground = true,
-    widthDp = 400,
-    heightDp = 200
-)
-/*@Composable
-fun DefaultPreview() {
-    KamiKazeTheme {
-        Box(
-            Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Greeting("Android")
-            Greeting(
-                "Android",
-                modifier = Modifier.align(Alignment.BottomEnd)
-            )
-        }
-    }
-}*/
-
-/*
-@Composable
-fun DefaultPreview() {
-    KamiKazeTheme {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-//            verticalArrangement = Arrangement.SpaceAround,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Greeting(
-                name = "Android",
-                modifier = Modifier
-                    .background(Color.Red)
-                    .weight(1f)
-            )
-            Greeting(
-                name = "Android",
-                modifier = Modifier
-                    .background(Color.Yellow)
-                    .weight(2f)
-            )
-            Greeting(
-                name = "Android",
-                modifier = Modifier.background(Color.Cyan)
-            )
-        }
-    }
-}*/
-
-@Composable
-fun DefaultPreview() {
-    KamiKazeTheme {
-        Row(
-            modifier = Modifier.fillMaxSize(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Greeting(
-                name = "Android",
-                modifier = Modifier
-                    .background(Color.Red)
-            )
-            Greeting(
-                name = "Android",
-                modifier = Modifier
-                    .background(Color.Yellow)
-            )
-            Greeting(
-                name = "Android",
-                modifier = Modifier.background(Color.Cyan)
-            )
-        }
-    }
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
 }
