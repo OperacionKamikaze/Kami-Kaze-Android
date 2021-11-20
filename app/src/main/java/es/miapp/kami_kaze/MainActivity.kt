@@ -16,10 +16,12 @@ package es.miapp.kami_kaze
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -50,6 +52,7 @@ import coil.compose.rememberImagePainter
 import coil.transform.BlurTransformation
 import es.miapp.kami_kaze.ui.theme.KamiKazeTheme
 
+@ExperimentalFoundationApi
 @ExperimentalCoilApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,28 +68,33 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@ExperimentalFoundationApi
 @ExperimentalCoilApi
 @Preview
 @Composable
 fun MediaList() {
-    LazyRow(
+    LazyVerticalGrid(
         contentPadding = PaddingValues(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        cells = GridCells.Adaptive(150.dp),
     ) {
-        items(getMedia()) { item -> MediaListItem(item) }
+        items(getMedia()) { item ->
+            MediaListItem(
+                item = item,
+                modifier = Modifier.padding(4.dp)
+            )
+        }
     }
 }
 
 @ExperimentalCoilApi
 //@Preview(showBackground = true)
 @Composable
-fun MediaListItem(item: MediaItem) {
-    Column(
-        modifier = Modifier.width(200.dp)
-    ) {
+fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
         Box(
             modifier = Modifier
-                .height(height = 200.dp),
+                .height(height = 200.dp)
+                .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             Image(
