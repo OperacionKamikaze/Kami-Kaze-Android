@@ -16,17 +16,23 @@ package es.miapp.kami_kaze
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayCircleOutline
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -37,8 +43,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
+import coil.transform.BlurTransformation
 import es.miapp.kami_kaze.ui.theme.KamiKazeTheme
 
+@ExperimentalCoilApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +56,14 @@ class MainActivity : ComponentActivity() {
             KamiKazeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting(name = "Android")
+                    MediaItem()
                 }
             }
         }
     }
 }
 
+@ExperimentalCoilApi
 @Preview(showBackground = true)
 @Composable
 fun MediaItem() {
@@ -60,10 +71,29 @@ fun MediaItem() {
         Box(
             modifier = Modifier
                 .height(height = 200.dp)
-                .fillMaxSize()
-                .background(color = Color.Red)
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
         ) {
+            Image(
+                painter = rememberImagePainter(
+                    data = "https://lorempixel.com/400/400/people/1/",
+                    builder = {
+                        transformations(BlurTransformation(LocalContext.current))
+                    }
+                ),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
 
+            Icon(
+                imageVector = Icons.Default.PlayCircleOutline,
+                contentDescription = null,
+                modifier = Modifier.size(92.dp),
+                tint = Color.White
+            )
+
+            //            Icon(painter = painterResource(id = R.drawable.ic_launcher_background))
         }
 
         Box(
@@ -109,24 +139,4 @@ fun ButtonText() {
             )
         )
     }
-}
-
-/**
- * Elementos de Compose:
- *
- * - Box // Equivalente a FrameLayout
- * - Row y Row Column // Sustituye al Linearlayout
- * - LazyRow, LazyColumn y LazyVerticalGrid // Sustituto de RecyclerView
- * - ConstraintLayout // Dominio por código
- * - Scaffold // Equivalente a Coordinator Layout (Pero diferente)
- * - Surface // Parecido al Box pero viene de Material
- * - Card // Representa un surface pero con elementos modificados
- */
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
 }
