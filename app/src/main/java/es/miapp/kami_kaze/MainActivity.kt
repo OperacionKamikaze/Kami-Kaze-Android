@@ -19,7 +19,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -69,9 +69,9 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun MediaList() {
-    LazyColumn(
+    LazyRow(
         contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         items(getMedia()) { item -> MediaListItem(item) }
     }
@@ -81,11 +81,12 @@ fun MediaList() {
 //@Preview(showBackground = true)
 @Composable
 fun MediaListItem(item: MediaItem) {
-    Column {
+    Column(
+        modifier = Modifier.width(200.dp)
+    ) {
         Box(
             modifier = Modifier
-                .height(height = 200.dp)
-                .fillMaxSize(),
+                .height(height = 200.dp),
             contentAlignment = Alignment.Center
         ) {
             Image(
