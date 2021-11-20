@@ -19,6 +19,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -56,7 +58,7 @@ class MainActivity : ComponentActivity() {
             KamiKazeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    MediaItem()
+                    MediaList()
                 }
             }
         }
@@ -64,9 +66,21 @@ class MainActivity : ComponentActivity() {
 }
 
 @ExperimentalCoilApi
-@Preview(showBackground = true)
+@Preview
 @Composable
-fun MediaItem() {
+fun MediaList() {
+    LazyColumn(
+        contentPadding = PaddingValues(8.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        items(getMedia()) { item -> MediaListItem(item) }
+    }
+}
+
+@ExperimentalCoilApi
+//@Preview(showBackground = true)
+@Composable
+fun MediaListItem(item: MediaItem) {
     Column {
         Box(
             modifier = Modifier
@@ -76,7 +90,7 @@ fun MediaItem() {
         ) {
             Image(
                 painter = rememberImagePainter(
-                    data = "https://lorempixel.com/400/400/people/1/",
+                    data = item.thumb,
                     builder = {
                         transformations(BlurTransformation(LocalContext.current))
                     }
@@ -86,12 +100,14 @@ fun MediaItem() {
                 contentScale = ContentScale.Crop
             )
 
-            Icon(
-                imageVector = Icons.Default.PlayCircleOutline,
-                contentDescription = null,
-                modifier = Modifier.size(92.dp),
-                tint = Color.White
-            )
+            if (item.type == MediaItem.Type.VIDEO) {
+                Icon(
+                    imageVector = Icons.Default.PlayCircleOutline,
+                    contentDescription = null,
+                    modifier = Modifier.size(92.dp),
+                    tint = Color.White
+                )
+            }
 
             //            Icon(painter = painterResource(id = R.drawable.ic_launcher_background))
         }
@@ -104,7 +120,7 @@ fun MediaItem() {
                 .padding(16.dp)
         ) {
             Text(
-                text = "Title 1",
+                text = item.title,
                 style = MaterialTheme.typography.h6
             )
         }
