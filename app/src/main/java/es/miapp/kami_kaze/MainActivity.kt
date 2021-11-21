@@ -27,10 +27,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayCircleOutline
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -45,8 +43,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -64,19 +60,20 @@ class MainActivity : ComponentActivity() {
             KamiKazeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
+                    val (value, onValueChange) = rememberSaveable { mutableStateOf("") }
                     //MediaList()
-                    StateSample()
+                    StateSample(
+                        value = value,
+                        onValueChange = onValueChange
+                    )
                 }
             }
         }
     }
 }
 
-@Preview(showBackground = true, device = Devices.PIXEL_4, showSystemUi = true)
 @Composable
-fun StateSample() {
-    var text by rememberSaveable { mutableStateOf("") }
-
+fun StateSample(value: String, onValueChange: (String) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -85,13 +82,13 @@ fun StateSample() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextField(
-            value = text,
-            onValueChange = { text = it },
+            value = value,
+            onValueChange = { onValueChange(it) },
             modifier = Modifier.fillMaxWidth()
         )
 
         Text(
-            text = text,
+            text = value,
             style = TextStyle(
                 color = Color.Black,
                 fontWeight = FontWeight.Bold,
@@ -104,8 +101,8 @@ fun StateSample() {
         )
 
         Button(
-            onClick = { text = "" },
-            enabled = text.isNotEmpty()
+            onClick = { onValueChange("") },
+            enabled = value.isNotEmpty()
         ) {
             Text(text = "Clear")
         }
