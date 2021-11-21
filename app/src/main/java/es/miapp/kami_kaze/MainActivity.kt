@@ -23,13 +23,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayCircleOutline
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -37,12 +38,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
@@ -61,16 +64,57 @@ class MainActivity : ComponentActivity() {
             KamiKazeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    MediaList()
+                    //MediaList()
+                    StateSample()
                 }
             }
         }
     }
 }
 
+@Preview(showBackground = true, device = Devices.PIXEL_4, showSystemUi = true)
+@Composable
+fun StateSample() {
+    var text by rememberSaveable { mutableStateOf("") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        TextField(
+            value = text,
+            onValueChange = { text = it },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Text(
+            text = text,
+            style = TextStyle(
+                color = Color.Black,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp) // margin
+                .background(Color.Cyan)
+                .padding(8.dp) // padding
+        )
+
+        Button(
+            onClick = { text = "" },
+            enabled = text.isNotEmpty()
+        ) {
+            Text(text = "Clear")
+        }
+    }
+}
+
 @ExperimentalFoundationApi
 @ExperimentalCoilApi
-@Preview
+//@Preview
 @Composable
 fun MediaList() {
     LazyVerticalGrid(
@@ -118,7 +162,7 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
                 )
             }
 
-            //            Icon(painter = painterResource(id = R.drawable.ic_launcher_background))
+            // Icon(painter = painterResource(id = R.drawable.ic_launcher_background))
         }
 
         Box(
