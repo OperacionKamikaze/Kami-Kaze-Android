@@ -2,7 +2,7 @@
   <code_scheme name="Project" version="173">
     <option name="RIGHT_MARGIN" value="120" />
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
-    <option name="SOFT_MARGINS" value="80,120" />
+    <option name="SOFT_MARGINS" value="120" />
     <JavaCodeStyleSettings>
       <option name="JD_ADD_BLANK_AFTER_PARM_COMMENTS" value="true" />
       <option name="JD_ADD_BLANK_AFTER_RETURN" value="true" />
