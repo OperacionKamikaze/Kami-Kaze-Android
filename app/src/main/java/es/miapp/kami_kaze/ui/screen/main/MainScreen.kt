@@ -11,25 +11,23 @@
  * provide an express grant of patent rights.
  */
 
-package es.miapp.kami_kaze
+package es.miapp.kami_kaze.ui.screen.main
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import coil.annotation.ExperimentalCoilApi
-import es.miapp.kami_kaze.ui.MyMoviesApp
-import es.miapp.kami_kaze.ui.screen.main.MainScreen
 
-@ExperimentalFoundationApi
 @ExperimentalCoilApi
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MyMoviesApp {
-                MainScreen(this)
-            }
-        }
+@ExperimentalFoundationApi
+@Composable
+fun MainScreen(context: Context) {
+    Scaffold(
+        topBar = { MainAppBar(context) }
+    ) { padding ->
+        MediaList(modifier = Modifier.padding(padding))
     }
 }

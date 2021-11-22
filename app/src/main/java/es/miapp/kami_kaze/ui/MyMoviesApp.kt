@@ -11,24 +11,20 @@
  * provide an express grant of patent rights.
  */
 
-package es.miapp.kami_kaze
+package es.miapp.kami_kaze.ui
 
-import es.miapp.kami_kaze.MediaItem.Type
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import es.miapp.kami_kaze.ui.theme.KamiKazeTheme
 
-data class MediaItem(
-    val id: Int,
-    val title: String,
-    val thumb: String,
-    val type: Type,
-) {
-    enum class Type { PHOTO, VIDEO }
-}
 
-fun getMedia() = (1..10).map {
-    MediaItem(
-        id = it,
-        title = "Title $it",
-        thumb = "https://picsum.photos/id/$it/400/400",
-        type = if (it % 3 == 0) Type.VIDEO else Type.PHOTO
-    )
+@Composable
+fun MyMoviesApp(content: @Composable () -> Unit) {
+    KamiKazeTheme {
+        // A surface container using the 'background' color from the theme
+        Surface(color = MaterialTheme.colors.background) {
+            content()
+        }
+    }
 }
