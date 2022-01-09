@@ -15,8 +15,8 @@
             <option name="regexConfig">
               <RegexConfig>
                 <option name="dotAll" value="true" />
-                <option name="expression" value="(?:Feature|Fix|Performance|Docs|Style|Refactor|Test|Build|Chore|Other|Internal|Revert|Release)(?:\(.*\))?: [A-Z].*+" />
-                <option name="testInput" value="Release(minor | patch | major | full): Versión final." />
+                <option name="expression" value="(?:feature|fix|perf|docs|style|refactor|test|build|chore|other|internal|revert|release)(?:\(.*\))?: [a-z][^.]*" />
+                <option name="testInput" value="release(minor | patch | major | full): versión final" />
               </RegexConfig>
             </option>
           </CommitMessageValidationConfig>
