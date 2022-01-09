@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_mapa">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="es.kamikaze.app.ui.home.HomeFragment"
+        android:id="@+id/navigation_mapa"
+        android:name="es.kamikaze.app.ui.map.MapFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_map" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="es.kamikaze.app.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_bolsa"
+        android:name="es.kamikaze.app.ui.bolsa.BolsaFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_bolsa" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="es.kamikaze.app.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_social"
+        android:name="es.kamikaze.app.ui.social.SocialFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_social" />
 </navigation>

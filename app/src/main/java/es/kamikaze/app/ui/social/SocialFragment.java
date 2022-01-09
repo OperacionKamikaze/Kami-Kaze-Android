@@ -1,4 +1,4 @@
-package es.kamikaze.app.ui.notifications;
+package es.kamikaze.app.ui.social;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import es.kamikaze.app.R;
-import es.kamikaze.app.databinding.FragmentNotificationsBinding;
+import es.kamikaze.app.databinding.FragmentSocialBinding;
 
-public class NotificationsFragment extends Fragment {
+public class SocialFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
-    private FragmentNotificationsBinding binding;
+    private SocialViewModel socialViewModel;
+    private FragmentSocialBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        socialViewModel =
+                new ViewModelProvider(this).get(SocialViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentSocialBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        socialViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

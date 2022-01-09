@@ -1,4 +1,4 @@
-package es.kamikaze.app.ui.dashboard;
+package es.kamikaze.app.ui.bolsa;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import es.kamikaze.app.R;
-import es.kamikaze.app.databinding.FragmentDashboardBinding;
+import es.kamikaze.app.databinding.FragmentBolsaBinding;
 
-public class DashboardFragment extends Fragment {
+public class BolsaFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
-    private FragmentDashboardBinding binding;
+    private BolsaViewModel bolsaViewModel;
+    private FragmentBolsaBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        bolsaViewModel =
+                new ViewModelProvider(this).get(BolsaViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentBolsaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        bolsaViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
