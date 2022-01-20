@@ -1,0 +1,37 @@
+<!--
+  ~ Copyright (c) 2022. Operación Kamikaze.
+  ~
+  ~ Licensed under the GNU General Public License v3.0
+  ~
+  ~ https://www.gnu.org/licenses/gpl-3.0.html
+  ~
+  ~ Permissions of this strong copyleft license are conditioned on making available complete
+  ~ source code of licensed works and modifications, which include larger works using a licensed
+  ~ work, under the same license. Copyright and license notices must be preserved. Contributors
+  ~ provide an express grant of patent rights.
+  -->
+
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=53:7A:C4:02:B5:D8:47:0B:30:34:C1:72:E8:BC:F2:1E:02:64:28:66%3Bes.kamikaze.app.ui
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    es.kamikaze.app.ui
+
+    SHA-1 certificate fingerprint:
+    53:7A:C4:02:B5:D8:47:0B:30:34:C1:72:E8:BC:F2:1E:02:64:28:66
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAI-aySMadsQ3Xtj_yYAO3BSKEXpaMjwvk</string>
+</resources>
