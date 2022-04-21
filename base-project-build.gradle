@@ -1,0 +1,24 @@
+ext {
+    getSubtreesEnabled = { ->
+        return project.findProperty('enableSubtrees') ?: "true"
+    }
+
+    getBuildType = { ->
+        if (System.env.BUILD_TYPE == null) {
+            return "debug"
+        } else {
+            return System.env.BUILD_TYPE
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
