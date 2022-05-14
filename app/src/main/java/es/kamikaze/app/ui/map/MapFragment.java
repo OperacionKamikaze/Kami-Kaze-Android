@@ -1,17 +1,39 @@
 package es.kamikaze.app.ui.map;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import es.kamikaze.app.MainActivity;
 import es.kamikaze.app.R;
 import es.kamikaze.app.databinding.FragmentMapBinding;
 
@@ -28,6 +50,7 @@ public class MapFragment extends Fragment {
     private MapViewModel mapViewModel;
     private FragmentMapBinding binding;
 
+
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -41,9 +64,13 @@ public class MapFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
+
             LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+            //googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+
+
         }
     };
 
@@ -76,6 +103,7 @@ public class MapFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 
 
 }
