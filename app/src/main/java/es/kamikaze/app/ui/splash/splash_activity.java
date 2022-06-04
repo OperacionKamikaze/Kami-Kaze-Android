@@ -19,12 +19,15 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import es.kamikaze.app.MainActivity;
+import es.kamikaze.app.model.User;
 
 public class splash_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //user
+        User user = new User();
 
         //gestionar shared preferences
 
