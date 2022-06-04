@@ -8,6 +8,7 @@ ext {
     // Plugins
     gradle_plugin_version = '7.1.3'
     google_services_version = '4.3.10'
+    mapsplaform_version = '2.0.0'
 
     // Dependencies
     appCompatVersion = '1.4.1'
@@ -19,10 +20,16 @@ ext {
     navigationUiVersion = '2.4.2'
     junitVersion = '4.13.2'
 
+    // Map and Firebase
+    mapServicesVersion = '18.0.2'
+    firebaseBomVersion = '30.0.1'
+    firebaseAnalyticsVersion = '21.0.0'
+
     dependencyImport = [
             // Plugins
             gradlePlugin        : "com.android.tools.build:gradle:$gradle_plugin_version",
             googleServicesPlugin: "com.google.gms:google-services:$google_services_version",
+            mapsplaformPlugin   : "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:$mapsplaform_version",
 
             // Dependencies
             appCompat           : "androidx.appcompat:appcompat:$appCompatVersion",
@@ -32,6 +39,11 @@ ext {
             viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewmodelKtxVersion",
             navigationFragment  : "androidx.navigation:navigation-fragment:$navigationFragemntVersion",
             navigationUi        : "androidx.navigation:navigation-ui:$navigationUiVersion",
-            junit               : "junit:junit:$junitVersion"
+            junit               : "junit:junit:$junitVersion",
+
+            // Map and Firebase
+            mapServices         : "com.google.android.gms:play-services-maps:$mapServicesVersion",
+            firebaseBom         : "com.google.firebase:firebase-bom:$firebaseBomVersion",
+            firebaseAnalytics   : "com.google.firebase:firebase-analytics:$firebaseAnalyticsVersion"
     ]
 }

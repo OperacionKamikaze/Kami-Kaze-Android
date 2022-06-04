@@ -12,12 +12,15 @@
   -->
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/black" />
 
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/kami_kaze" />
+    <item android:drawable="@color/black"/>
+
+    <item android:left="20dp"
+        android:right="20dp"
+        android:top="50dp"
+        android:bottom="50dp">
+        <bitmap android:src="@drawable/googleicon"
+            android:gravity="center" />
     </item>
 
 </layer-list>

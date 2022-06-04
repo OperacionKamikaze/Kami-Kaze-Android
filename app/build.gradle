@@ -13,6 +13,9 @@
 
 plugins {
     id 'com.android.application'
+    id "org.jetbrains.qodana" version "0.1.13"
 }
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 apply from: '../base-build.gradle'

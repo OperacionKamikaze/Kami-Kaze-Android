@@ -58,6 +58,11 @@ dependencies {
     implementation dependencyImport.navigationFragment
     implementation dependencyImport.navigationUi
 
+    // Map Services and Firebase
+    implementation dependencyImport.mapServices
+    implementation dependencyImport.firebaseBom
+    implementation dependencyImport.firebaseAnalytics
+
     // Unit Testing Dependencies
     testImplementation dependencyImport.junit
 }

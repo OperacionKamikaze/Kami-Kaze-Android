@@ -1,0 +1,4 @@
+version: "1.0"
+linter: jetbrains/qodana-jvm-android:2022.1-eap
+profile:
+  name: QodanaC:\Proyectos Android Gradle Fix\Kami - Kaze Java

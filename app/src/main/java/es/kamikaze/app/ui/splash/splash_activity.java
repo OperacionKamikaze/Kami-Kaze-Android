@@ -11,29 +11,29 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app;
+package es.kamikaze.app.ui.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-/**
- * Actividad para crear el SplashScreen.
- */
-public class SplashScreen extends AppCompatActivity {
+import es.kamikaze.app.MainActivity;
+
+public class splash_activity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.SplashTheme);
-        new Handler().postDelayed(() -> {
-            Intent i = new Intent(SplashScreen.this, MainActivity.class);
-            startActivity(i);
 
-            finish();
-        }, 3000);
+        //gestionar shared preferences
+
+
+        //gestionar login de google
+
+        //gestionar mapa si es necesario
+
+
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

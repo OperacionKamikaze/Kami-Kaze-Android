@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "65800382453",
+    "project_id": "kami-kaze-347314",
+    "storage_bucket": "kami-kaze-347314.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65800382453:android:3f143584a20c51adfa62bc",
+        "android_client_info": {
+          "package_name": "es.kamikaze.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65800382453-orif1ltgsmrikc9raebmvjsrlv5e567q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByDwCQoCVxIB-uSwDx7-7Aq0fP7lbUN9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65800382453-orif1ltgsmrikc9raebmvjsrlv5e567q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
