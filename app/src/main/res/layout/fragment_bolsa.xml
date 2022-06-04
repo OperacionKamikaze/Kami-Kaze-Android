@@ -43,8 +43,8 @@
         android:id="@+id/tvTituloExp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Exp"
-        app:layout_constraintBottom_toTopOf="@+id/imgAvatar"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@+id/tvTituloVida" />
 
@@ -52,8 +52,8 @@
         android:id="@+id/tvTituloVida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="VIDA"
-        app:layout_constraintBottom_toTopOf="@+id/tvTituloExp"
         app:layout_constraintStart_toStartOf="@+id/tvTituloExp"
         app:layout_constraintTop_toBottomOf="@+id/tvNombreUsuario" />
 
@@ -64,7 +64,6 @@
         android:layout_marginTop="16dp"
         android:text="MACGREGOR"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvTituloVida"
         app:layout_constraintStart_toStartOf="@+id/tvTituloVida"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,12 +113,13 @@
         android:layout_height="311dp"
         android:scaleType="fitCenter"
         android:src="@drawable/macgregor"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/tvArmadura"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvVelocidad"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTituloExp" />
-
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloExp"
+        app:layout_constraintVertical_bias="0.35000002" />
+    <!--app:layout_constraintBottom_toTopOf="@+id/linearLayout2"-->
     <TextView
         android:id="@+id/tvAtaque"
         android:layout_width="wrap_content"
@@ -142,79 +142,84 @@
         app:layout_constraintStart_toStartOf="@+id/tvVelocidad"
         app:layout_constraintTop_toBottomOf="@+id/tvAtaque" />
 
+    <!--app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+    app:layout_constraintBottom_toTopOf="@+id/imageView2"-->
     <TextView
         android:id="@+id/tvVelocidad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="velocidad: 99"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+
+        app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@+id/tvDefensa" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="42dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvArmadura"
-        app:layout_constraintEnd_toEndOf="@+id/tvArmadura"
-        app:layout_constraintStart_toStartOf="@+id/tvArmadura"
-        tools:src="@tools:sample/avatars" />
+    <!--<ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="42dp"
+            android:layout_height="34dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvArmadura"
+            app:layout_constraintEnd_toEndOf="@+id/tvArmadura"
+            app:layout_constraintStart_toStartOf="@+id/tvArmadura"
+            tools:src="@tools:sample/avatars" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="39dp"
-        android:layout_height="33dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvArma"
-        app:layout_constraintEnd_toEndOf="@+id/tvArma"
-        app:layout_constraintStart_toStartOf="@+id/tvArma"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/tvArmadura"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Armadura"
-        app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
-        app:layout_constraintEnd_toStartOf="@+id/tvArma"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imgAvatar" />
-
-    <TextView
-        android:id="@+id/tvArma"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Arma"
-        app:layout_constraintBottom_toBottomOf="@+id/tvArmadura"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvArmadura"
-        app:layout_constraintTop_toTopOf="@+id/tvArmadura" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="409dp"
-        android:layout_height="251dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgAvatar">
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="39dp"
+            android:layout_height="33dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvArma"
+            app:layout_constraintEnd_toEndOf="@+id/tvArma"
+            app:layout_constraintStart_toStartOf="@+id/tvArma"
+            tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tvTituloObjetos"
-            android:layout_width="match_parent"
+            android:id="@+id/tvArmadura"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="OBJETOS" />
+            android:text="Armadura"
+            app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
+            app:layout_constraintEnd_toStartOf="@+id/tvArma"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgAvatar" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvObjetos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tvArma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arma"
+            app:layout_constraintBottom_toBottomOf="@+id/tvArmadura"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvArmadura"
+            app:layout_constraintTop_toTopOf="@+id/tvArmadura" />
+            -->
+
+    <!--<LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="409dp"
+            android:layout_height="251dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAvatar">
+
+            <TextView
+                android:id="@+id/tvTituloObjetos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="OBJETOS" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvObjetos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout> -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
