@@ -17,18 +17,14 @@ public abstract class Item {
 
     private int precio = 0;
 
-
     public abstract void usar();
 
-    public int getPrecio(){
+    public int getPrecio() {
         return precio;
     }
 
     //El precio de la venta siempre será algo mas bajo que el de la compra
-    public int getPrecioVenta(){
-        return  (int) ((precio - (precio % 0.8)) * 0.8);
+    public int getPrecioVenta() {
+        return (int) ((precio - (precio % 0.8)) * 0.8);
     }
-
-
-
 }

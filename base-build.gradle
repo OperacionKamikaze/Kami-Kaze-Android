@@ -50,6 +50,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // AndroidX
+    compileOnly dependencyImport.lombok
+    annotationProcessor  dependencyImport.lombok
     implementation dependencyImport.appCompat
     implementation dependencyImport.material
     implementation dependencyImport.contraintLayout

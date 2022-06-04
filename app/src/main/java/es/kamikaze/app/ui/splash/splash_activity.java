@@ -28,8 +28,6 @@ public class splash_activity extends AppCompatActivity {
 
         //gestionar shared preferences
 
-
-
         //gestionar login de google
 
 

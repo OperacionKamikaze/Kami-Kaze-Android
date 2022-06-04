@@ -29,11 +29,8 @@ public class SocialFragment extends Fragment {
     private SocialViewModel socialViewModel;
     private FragmentSocialBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        socialViewModel =
-                new ViewModelProvider(this).get(SocialViewModel.class);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        socialViewModel = new ViewModelProvider(this).get(SocialViewModel.class);
         binding = FragmentSocialBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 

@@ -29,10 +29,8 @@ public class BolsaFragment extends Fragment {
     private BolsaViewModel bolsaViewModel;
     private FragmentBolsaBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        bolsaViewModel =
-                new ViewModelProvider(this).get(BolsaViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        bolsaViewModel = new ViewModelProvider(this).get(BolsaViewModel.class);
 
         binding = FragmentBolsaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
