@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022. Operación Kamikaze.
+ * Copyright (c) 2022. Operación Kami - Kaze.
  *
  * Licensed under the GNU General Public License v3.0
  *
