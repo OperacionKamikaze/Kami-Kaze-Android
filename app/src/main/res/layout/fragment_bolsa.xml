@@ -16,19 +16,210 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#854F00"
     tools:context=".ui.bolsa.BolsaFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <ProgressBar
+        android:id="@+id/progressBarExp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="257dp"
+        android:layout_height="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTituloExp"
+        app:layout_constraintStart_toStartOf="@+id/progressBarVida"
+        app:layout_constraintTop_toTopOf="@+id/tvTituloExp" />
+
+    <ProgressBar
+        android:id="@+id/progressBarVida"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="257dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTituloVida"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTituloVida" />
+
+    <TextView
+        android:id="@+id/tvTituloExp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Exp"
+        app:layout_constraintStart_toStartOf="@+id/imgAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloVida" />
+
+    <TextView
+        android:id="@+id/tvTituloVida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="VIDA"
+        app:layout_constraintStart_toStartOf="@+id/tvTituloExp"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreUsuario" />
+
+    <TextView
+        android:id="@+id/tvNombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="MACGREGOR"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTituloVida"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNombreUsuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNombreUsuario">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTituloMonedas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ORO: 0€"
+                tools:layout_editor_absoluteX="52dp"
+                tools:layout_editor_absoluteY="151dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTituloNivel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LVL 1"
+                tools:layout_editor_absoluteX="52dp"
+                tools:layout_editor_absoluteY="151dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="214dp"
+        android:layout_height="311dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/macgregor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvVelocidad"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloExp"
+        app:layout_constraintVertical_bias="0.35000002" />
+    <!--app:layout_constraintBottom_toTopOf="@+id/linearLayout2"-->
+    <TextView
+        android:id="@+id/tvAtaque"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ataque: 99"
+        app:layout_constraintBottom_toTopOf="@+id/tvDefensa"
+        app:layout_constraintEnd_toEndOf="@+id/tvDefensa"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/tvDefensa"
+        app:layout_constraintTop_toTopOf="@+id/imgAvatar" />
+
+    <TextView
+        android:id="@+id/tvDefensa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="defensa: 99"
+        app:layout_constraintBottom_toTopOf="@+id/tvVelocidad"
+        app:layout_constraintEnd_toEndOf="@+id/tvVelocidad"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/tvVelocidad"
+        app:layout_constraintTop_toBottomOf="@+id/tvAtaque" />
+
+    <!--app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+    app:layout_constraintBottom_toTopOf="@+id/imageView2"-->
+    <TextView
+        android:id="@+id/tvVelocidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="velocidad: 99"
+
+        app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imgAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/tvDefensa" />
+
+    <!--<ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="42dp"
+            android:layout_height="34dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvArmadura"
+            app:layout_constraintEnd_toEndOf="@+id/tvArmadura"
+            app:layout_constraintStart_toStartOf="@+id/tvArmadura"
+            tools:src="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="39dp"
+            android:layout_height="33dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvArma"
+            app:layout_constraintEnd_toEndOf="@+id/tvArma"
+            app:layout_constraintStart_toStartOf="@+id/tvArma"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvArmadura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Armadura"
+            app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
+            app:layout_constraintEnd_toStartOf="@+id/tvArma"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgAvatar" />
+
+        <TextView
+            android:id="@+id/tvArma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arma"
+            app:layout_constraintBottom_toBottomOf="@+id/tvArmadura"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvArmadura"
+            app:layout_constraintTop_toTopOf="@+id/tvArmadura" />
+            -->
+
+    <!--<LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="409dp"
+            android:layout_height="251dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAvatar">
+
+            <TextView
+                android:id="@+id/tvTituloObjetos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="OBJETOS" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvObjetos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout> -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

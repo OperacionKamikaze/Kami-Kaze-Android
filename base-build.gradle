@@ -1,0 +1,70 @@
+android {
+    compileSdkVersion project.compileSdkVersion
+
+    defaultConfig {
+        applicationId "es.kamikaze.app"
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
+        versionCode 1
+        versionName VERSION
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            initWith debug
+            minifyEnabled false
+        }
+
+        release {
+            initWith release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            consumerProguardFiles 'consumer-rules.pro'
+        }
+    }
+
+    lintOptions {
+        warningsAsErrors true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // variant filter to ignore unneeded dependencies
+    variantFilter { variant ->
+        if (!variant.buildType.name.contains(rootProject.ext.getBuildType())) {
+            setIgnore(true)
+        }
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // AndroidX
+    compileOnly dependencyImport.lombok
+    annotationProcessor  dependencyImport.lombok
+    implementation dependencyImport.appCompat
+    implementation dependencyImport.material
+    implementation dependencyImport.contraintLayout
+    implementation dependencyImport.livedata
+    implementation dependencyImport.viewmodel
+    implementation dependencyImport.navigationFragment
+    implementation dependencyImport.navigationUi
+
+    // Map Services and Firebase
+    implementation dependencyImport.mapServices
+    implementation dependencyImport.firebaseBom
+    implementation dependencyImport.firebaseAnalytics
+
+    // Unit Testing Dependencies
+    testImplementation dependencyImport.junit
+}
