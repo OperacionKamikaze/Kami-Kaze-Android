@@ -11,28 +11,24 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app.ui.splash;
+package es.kamikaze.app.model;
 
-import androidx.appcompat.app.AppCompatActivity;
+public abstract class Item {
 
-import android.content.Intent;
-import android.os.Bundle;
-
-import es.kamikaze.app.MainActivity;
-
-public class splash_activity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //gestionar shared preferences
+    private int precio = 0;
 
 
+    public abstract void usar();
 
-        //gestionar login de google
-
-
-        startActivity( new Intent(this, MainActivity.class));
+    public int getPrecio(){
+        return precio;
     }
+
+    //El precio de la venta siempre será algo mas bajo que el de la compra
+    public int getPrecioVenta(){
+        return  (int) ((precio - (precio % 0.8)) * 0.8);
+    }
+
+
+
 }
