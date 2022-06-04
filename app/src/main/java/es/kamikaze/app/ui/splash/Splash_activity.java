@@ -11,21 +11,26 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app.ui.map;
+package es.kamikaze.app.ui.splash;
 
-import androidx.lifecycle.ViewModel;
+import android.content.Intent;
+import android.os.Bundle;
 
-public class MapViewModel extends ViewModel {
+import androidx.appcompat.app.AppCompatActivity;
 
-    //private MutableLiveData<String> mText;
-    //private FragmentMapBinding binding;
+import es.kamikaze.app.MainActivity;
+
+public class Splash_activity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //gestionar shared preferences
+
+        //gestionar login de google
 
 
-    public MapViewModel() {
-        //mText = new MutableLiveData<>();
-        //mText.setValue("This is home fragment");
+        startActivity(new Intent(this, MainActivity.class));
     }
-    /*public LiveData<String> getText() {
-        return mText;
-    }*/
 }
