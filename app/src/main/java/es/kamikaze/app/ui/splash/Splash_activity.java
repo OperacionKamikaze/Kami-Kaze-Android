@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import es.kamikaze.app.MainActivity;
 
-public class splash_activity extends AppCompatActivity {
+public class Splash_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

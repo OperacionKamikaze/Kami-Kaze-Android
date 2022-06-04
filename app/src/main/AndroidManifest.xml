@@ -34,7 +34,7 @@
         tools:ignore="AllowBackup">
 
         <activity
-            android:name=".ui.splash.splash_activity"
+            android:name=".ui.splash.Splash_activity"
             android:exported="true"
             android:theme="@style/splash">
             <intent-filter>
@@ -62,5 +62,4 @@
 
         </activity>
     </application>
-
 </manifest>
