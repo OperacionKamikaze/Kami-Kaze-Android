@@ -11,26 +11,14 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app.ui.splash;
+package es.kamikaze.app;
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.app.Application;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import es.kamikaze.app.MainActivity;
-
-public class Splash_activity extends AppCompatActivity {
-
+public class KamiKaze extends Application {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //gestionar shared preferences
-
-        //gestionar login de google
-
-
-        startActivity(new Intent(this, MainActivity.class));
+    public void onCreate() {
+        super.onCreate();
+        // Iniciar configuraciones y conexiones previas.
     }
 }

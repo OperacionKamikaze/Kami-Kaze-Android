@@ -19,7 +19,6 @@
     android:background="#854F00"
     tools:context=".ui.bolsa.BolsaFragment">
 
-
     <ProgressBar
         android:id="@+id/progressBarExp"
         style="?android:attr/progressBarStyleHorizontal"
