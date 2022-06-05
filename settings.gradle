@@ -12,4 +12,5 @@
  */
 
 rootProject.name = "Kami - Kaze"
-include ':app'
+include ':app', ':kz-components'
+project(':kz-components').projectDir = new File('submodules/kz-components/kz-components')
