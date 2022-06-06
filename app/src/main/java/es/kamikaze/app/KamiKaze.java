@@ -15,10 +15,13 @@ package es.kamikaze.app;
 
 import android.app.Application;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 public class KamiKaze extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         // Iniciar configuraciones y conexiones previas.
     }
 }

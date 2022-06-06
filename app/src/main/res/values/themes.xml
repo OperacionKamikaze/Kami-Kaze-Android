@@ -26,7 +26,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
     <!-- Customize your theme here.-->
-    <style name="Theme.KamiKaze.SplashScreen" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.KamiKaze.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 </resources>
