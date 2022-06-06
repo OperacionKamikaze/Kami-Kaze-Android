@@ -19,12 +19,15 @@ ext {
     compileSdkVersion = 32
 
     // Plugins
-    gradle_plugin_version = '7.1.3'
+    gradle_plugin_version = '7.2.1'
     google_services_version = '4.3.10'
+    kotlin_plugin_version = '1.6.21'
     mapsplaform_version = '2.0.0'
 
     // Dependencies
     lombokVersion = '1.18.24'
+
+    kotlinVersion = '1.8.0'
     appCompatVersion = '1.4.2'
     materialVersion = '1.6.1'
     constraintLayoutVersion = '2.1.4'
@@ -32,7 +35,11 @@ ext {
     lifecycleViewmodelKtxVersion = '2.4.1'
     navigationFragemntVersion = '2.4.2'
     navigationUiVersion = '2.4.2'
+    splashScreenVersion = '1.0.0-rc01'
     junitVersion = '4.13.2'
+
+    // External dependencies
+    lottieVersion = '3.4.0'
 
     // Map and Firebase
     mapServicesVersion = '18.0.2'
@@ -43,10 +50,13 @@ ext {
             // Plugins
             gradlePlugin        : "com.android.tools.build:gradle:$gradle_plugin_version",
             googleServicesPlugin: "com.google.gms:google-services:$google_services_version",
+            kotlinPlugin        : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_plugin_version",
             mapsplaformPlugin   : "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:$mapsplaform_version",
 
             // Dependencies
             lombok              : "org.projectlombok:lombok:$lombokVersion",
+
+            kotlin              : "androidx.core:core-ktx:$kotlinVersion",
             appCompat           : "androidx.appcompat:appcompat:$appCompatVersion",
             material            : "com.google.android.material:material:$materialVersion",
             contraintLayout     : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
@@ -54,7 +64,11 @@ ext {
             viewmodel           : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewmodelKtxVersion",
             navigationFragment  : "androidx.navigation:navigation-fragment:$navigationFragemntVersion",
             navigationUi        : "androidx.navigation:navigation-ui:$navigationUiVersion",
+            splashScreen        : "androidx.core:core-splashscreen:$splashScreenVersion",
             junit               : "junit:junit:$junitVersion",
+
+            // External dependencies
+            lottie              : "com.airbnb.android:lottie:$lottieVersion",
 
             // Map and Firebase
             mapServices         : "com.google.android.gms:play-services-maps:$mapServicesVersion",

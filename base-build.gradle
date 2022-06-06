@@ -61,10 +61,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':kz-components')
 
     // AndroidX
     compileOnly dependencyImport.lombok
     annotationProcessor  dependencyImport.lombok
+
+    implementation dependencyImport.kotlin
     implementation dependencyImport.appCompat
     implementation dependencyImport.material
     implementation dependencyImport.contraintLayout
@@ -72,6 +75,10 @@ dependencies {
     implementation dependencyImport.viewmodel
     implementation dependencyImport.navigationFragment
     implementation dependencyImport.navigationUi
+    implementation dependencyImport.splashScreen
+
+    // External dependencies
+    implementation dependencyImport.lottie
 
     // Map Services and Firebase
     implementation dependencyImport.mapServices

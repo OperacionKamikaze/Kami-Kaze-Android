@@ -222,7 +222,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
         super.onViewCreated(view, savedInstanceState);
         main = (MainActivity) this.getActivity();
         SupportMapFragment mapFragment =
-                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.navHostFragmentContainer);
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }

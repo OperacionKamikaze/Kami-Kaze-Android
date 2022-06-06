@@ -11,6 +11,17 @@
  * provide an express grant of patent rights.
  */
 
-rootProject.name = "Kami - Kaze"
-include ':app', ':kz-components'
-project(':kz-components').projectDir = new File('submodules/kz-components/kz-components')
+package es.kamikaze.app;
+
+import android.app.Application;
+
+import androidx.appcompat.app.AppCompatDelegate;
+
+public class KamiKaze extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        // Iniciar configuraciones y conexiones previas.
+    }
+}

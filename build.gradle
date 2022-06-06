@@ -24,5 +24,6 @@ buildscript {
     dependencies {
         classpath dependencyImport.googleServicesPlugin
         classpath dependencyImport.gradlePlugin
+        classpath dependencyImport.kotlinPlugin
     }
 }

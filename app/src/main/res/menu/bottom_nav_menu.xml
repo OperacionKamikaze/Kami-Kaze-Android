@@ -13,20 +13,15 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <item
         android:id="@+id/navigation_bolsa"
         android:icon="@drawable/ico_bolsa"
         android:title="Bolsa" />
 
-    <item
-        android:id="@+id/navigation_mapa"
-        android:icon="@drawable/ico_map"
-        android:title="Mapa" />
+    <item android:id="@+id/empty" />
 
     <item
         android:id="@+id/navigation_social"
         android:icon="@drawable/ico_social"
         android:title="Social" />
-
 </menu>
