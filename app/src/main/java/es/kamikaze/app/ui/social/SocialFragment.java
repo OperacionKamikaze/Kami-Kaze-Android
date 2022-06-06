@@ -22,8 +22,6 @@ import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,7 +32,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,17 +45,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import es.kamikaze.app.R;
 import es.kamikaze.app.databinding.FragmentSocialBinding;
-import es.kamikaze.app.model.User;
 
 public class SocialFragment extends Fragment {
-
-    private SocialViewModel socialViewModel;
-    private FragmentSocialBinding binding;
-
 
     private final String TAG = "DEBUG";
     private final String TAGLOC = "Social";
     private final int RC_SIGN_IN = 9001;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
+    private SocialViewModel socialViewModel;
+    private FragmentSocialBinding binding;
     private String url;
     private View view;
     private GoogleSignInClient mSignInClient;
@@ -67,11 +63,7 @@ public class SocialFragment extends Fragment {
     private DatabaseReference mDatabase;
     private FirebaseUser user;
 
-    GoogleSignInOptions gso;
-    GoogleSignInClient gsc;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         socialViewModel =
                 new ViewModelProvider(this).get(SocialViewModel.class);
 
@@ -112,8 +104,8 @@ public class SocialFragment extends Fragment {
              *  Scopes.PLUS_LOGIN scope hacia GoogleSignInOptions
              *  para ver la diferencia.
 
-            SignInButton signInButton = view.findViewById(R.id.sign_in_button);
-            signInButton.setSize(SignInButton.SIZE_WIDE);*/
+             SignInButton signInButton = view.findViewById(R.id.sign_in_button);
+             signInButton.setSize(SignInButton.SIZE_WIDE);*/
 
 
         } catch (InflateException e) {
@@ -148,7 +140,6 @@ public class SocialFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-
     }
 
     @Override
@@ -173,9 +164,7 @@ public class SocialFragment extends Fragment {
         }
     }
 
-
     private void firebaseAuthWithGoogle(String idToken) {
-
         showProgressBar();
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
 
@@ -202,7 +191,7 @@ public class SocialFragment extends Fragment {
     }
 
     private void writeNewUser(String userId, String name, String email) {
-        User user = User.getInstancia();
+        FirebaseUser user = mAuth.getCurrentUser();
         mDatabase.child("users").child(userId).setValue(user);
     }
 
@@ -244,7 +233,7 @@ public class SocialFragment extends Fragment {
         }
     }
 
-   private void updateUI() {
+    private void updateUI() {
         FirebaseUser user = mAuth.getCurrentUser();
          /*if (user != null) {
             binding.pNombreTv.setText(user.getDisplayName());
@@ -269,6 +258,4 @@ public class SocialFragment extends Fragment {
 
         }*/
     }
-
-
 }
