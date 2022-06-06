@@ -22,24 +22,23 @@ import es.kamikaze.app.databinding.ActivityMainBinding;
 import es.kamikaze.app.ui.bolsa.BolsaFragment;
 import es.kamikaze.app.ui.map.MapFragment;
 import es.kamikaze.app.ui.social.SocialFragment;
+import es.kamikaze.app.util.Permisos;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        permisos();
 
-        es.kamikaze.app.databinding.ActivityMainBinding b = ActivityMainBinding.inflate(getLayoutInflater());
+        ActivityMainBinding b = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
 
         b.bottomNavView.setBackground(null);
         b.bottomNavView.getMenu().getItem(1).setEnabled(false);
 
-        b.fabMap.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(
-                    R.id.navHostFragmentContainer, new MapFragment()).commit();
-        });
-
+        b.fabMap.setOnClickListener(v -> getSupportFragmentManager().beginTransaction().replace(
+                R.id.navHostFragmentContainer, new MapFragment()).commit());
 
         b.bottomNavView.setOnItemSelectedListener(item -> {
             Fragment temp = null;
@@ -54,5 +53,18 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        permisos();
+    }
+
+    private void permisos() {
+        Permisos permisos = new Permisos(this, this, null);
+        if (permisos.hasAllPerms(permisos.getPermisos())) {
+            permisos.permissionsApp();
+        }
     }
 }
