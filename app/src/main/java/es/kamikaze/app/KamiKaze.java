@@ -17,11 +17,14 @@ import android.app.Application;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import es.kamikaze.app.model.User;
+
 public class KamiKaze extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        User user = new User();
         // Iniciar configuraciones y conexiones previas.
     }
 }

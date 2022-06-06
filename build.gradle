@@ -23,6 +23,7 @@ buildscript {
 
     dependencies {
         classpath dependencyImport.googleServicesPlugin
+        classpath dependencyImport.mapsplaformPlugin
         classpath dependencyImport.gradlePlugin
         classpath dependencyImport.kotlinPlugin
     }
