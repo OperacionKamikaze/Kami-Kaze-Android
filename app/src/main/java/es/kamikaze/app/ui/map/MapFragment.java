@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022. Operación Kamikaze.
+ * Copyright (c) 2022. Operación Kami - Kaze.
  *
  * Licensed under the GNU General Public License v3.0
  *
@@ -222,7 +222,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
         super.onViewCreated(view, savedInstanceState);
         main = (MainActivity) this.getActivity();
         SupportMapFragment mapFragment =
-                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.navHostFragmentContainer);
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }

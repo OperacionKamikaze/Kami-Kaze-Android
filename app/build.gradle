@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022. Operación Kamikaze.
+ * Copyright (c) 2022. Operación Kami - Kaze.
  *
  * Licensed under the GNU General Public License v3.0
  *
@@ -17,5 +17,6 @@ plugins {
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
 
 apply from: '../base-build.gradle'

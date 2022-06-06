@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2022. Operación Kamikaze.
+  ~ Copyright (c) 2022. Operación Kami - Kaze.
   ~
   ~ Licensed under the GNU General Public License v3.0
   ~
@@ -18,7 +18,6 @@
     android:layout_height="match_parent"
     android:background="#854F00"
     tools:context=".ui.bolsa.BolsaFragment">
-
 
     <ProgressBar
         android:id="@+id/progressBarExp"
