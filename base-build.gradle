@@ -82,8 +82,11 @@ dependencies {
 
     // Map Services and Firebase
     implementation dependencyImport.mapServices
+    implementation dependencyImport.mapServicesAuth
     implementation dependencyImport.firebaseBom
     implementation dependencyImport.firebaseAnalytics
+    implementation dependencyImport.firebaseAuth
+    implementation dependencyImport.firebaseDatabase
 
     // Unit Testing Dependencies
     testImplementation dependencyImport.junit

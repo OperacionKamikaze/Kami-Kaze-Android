@@ -33,5 +33,26 @@
     Once you have your key (it starts with "AIza"), replace the "google_maps_key"
     string in this file.
     -->
+
+    <!--
+Nombre de Alias: androiddebugkey
+Fecha de Creación: 25-may-2021
+Tipo de Entrada: PrivateKeyEntry
+Longitud de la Cadena de Certificado: 1
+Certificado[1]:
+Propietario: C=US, O=Android, CN=Android Debug
+Emisor: C=US, O=Android, CN=Android Debug
+Número de serie: 1
+Válido desde: Tue May 25 17:17:48 CEST 2021 hasta: Thu May 18 17:17:48 CEST 2051
+Huellas digitales del certificado:
+         SHA1: E4:B3:CE:E5:48:D1:AA:58:BC:03:6E:DC:31:36:2E:5D:67:4F:E1:4B
+         SHA256: F5:AA:32:48:79:EC:30:9F:EF:7F:4E:48:94:0A:BE:50:BC:EE:81:AA:6E:60:68:E2:11:70:28:6A:5A:4B:61:ED
+Nombre del algoritmo de firma: SHA1withRSA (débil)
+Algoritmo de clave pública de asunto: Clave RSA de 2048 bits
+Versión: 1
+
+Warning:
+El certificado utiliza el algoritmo de firma SHA1withRSA, lo que se considera un riesgo de seguridad. Este algoritmo se desactivará en una futura actualización.
+    -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDfDIv0gRE2FAco5M_z0D0qKhYM2LFhx5s</string>
 </resources>

@@ -13,10 +13,10 @@
 
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
+    id 'kotlin-android'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id "org.jetbrains.qodana" version "0.1.13"
 }
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'kotlin-android'
 
 apply from: '../base-build.gradle'

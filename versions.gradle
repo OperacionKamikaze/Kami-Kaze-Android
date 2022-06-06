@@ -22,7 +22,7 @@ ext {
     gradle_plugin_version = '7.2.1'
     google_services_version = '4.3.10'
     kotlin_plugin_version = '1.6.21'
-    mapsplaform_version = '2.0.0'
+    mapsplaform_version = '2.0.1'
 
     // Dependencies
     lombokVersion = '1.18.24'
@@ -43,15 +43,18 @@ ext {
 
     // Map and Firebase
     mapServicesVersion = '18.0.2'
+    mapServicesAuthVersion = '20.2.0'
     firebaseBomVersion = '30.1.0'
     firebaseAnalyticsVersion = '21.0.0'
+    firebaseAuthVersion = '21.0.5'
+    firebaseDatabaseVersion = '20.0.5'
 
     dependencyImport = [
             // Plugins
             gradlePlugin        : "com.android.tools.build:gradle:$gradle_plugin_version",
             googleServicesPlugin: "com.google.gms:google-services:$google_services_version",
             kotlinPlugin        : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_plugin_version",
-            mapsplaformPlugin   : "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:$mapsplaform_version",
+            mapsplaformPlugin   : "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:$mapsplaform_version",
 
             // Dependencies
             lombok              : "org.projectlombok:lombok:$lombokVersion",
@@ -72,7 +75,10 @@ ext {
 
             // Map and Firebase
             mapServices         : "com.google.android.gms:play-services-maps:$mapServicesVersion",
+            mapServicesAuth     : "com.google.android.gms:play-services-auth:$mapServicesAuthVersion",
             firebaseBom         : "com.google.firebase:firebase-bom:$firebaseBomVersion",
-            firebaseAnalytics   : "com.google.firebase:firebase-analytics:$firebaseAnalyticsVersion"
+            firebaseAnalytics   : "com.google.firebase:firebase-analytics:$firebaseAnalyticsVersion",
+            firebaseAuth        : "com.google.firebase:firebase-auth:$firebaseAuthVersion",
+            firebaseDatabase    : "com.google.firebase:firebase-database:$firebaseDatabaseVersion"
     ]
 }
