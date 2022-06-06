@@ -191,7 +191,7 @@ public class SocialFragment extends Fragment {
     }
 
     private void writeNewUser(String userId, String name, String email) {
-        User user = User.getInstancia();
+        FirebaseUser user =  mAuth.getCurrentUser();
         mDatabase.child("users").child(userId).setValue(user);
     }
 
