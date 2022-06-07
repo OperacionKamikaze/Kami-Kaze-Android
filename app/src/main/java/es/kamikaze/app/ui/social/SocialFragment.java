@@ -60,7 +60,7 @@ public class SocialFragment extends Fragment {
 
     private final String TAG = "DEBUG";
     private final String TAGLOC = "Social";
-    private final int RC_SIGN_IN = 9001;
+    private final int RC_SIGN_IN = 100;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     private SocialViewModel socialViewModel;
@@ -91,14 +91,14 @@ public class SocialFragment extends Fragment {
         binding.btnLoginGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "click", Toast.LENGTH_SHORT).show();
+
                 signIn();
             }
         });
         binding.btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "click", Toast.LENGTH_SHORT).show();
+
                 signOut();
             }
         });
@@ -216,11 +216,8 @@ public class SocialFragment extends Fragment {
     }
 
     private void writeNewUser(String userId, String name, String email) {
-        FirebaseUser user = mAuth.getCurrentUser();
-        assert user != null;
-        mDatabase.child("users").child(userId).setValue(user);
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("users/" + userId);
+        /*DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("users/" + userId);
         rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -247,7 +244,7 @@ public class SocialFragment extends Fragment {
                 Log.e(TAG + TAGLOC, " -> writeNewUser -> onCancelled: DatabaseError" + error.toString());
 
             }
-        });
+        });*/
     }
 
     private void signIn() {
