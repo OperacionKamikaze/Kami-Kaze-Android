@@ -18,13 +18,14 @@
         <entry key="..\:/Proyectos Android Gradle Fix/Kami - Kaze Java/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.147" />
         <entry key="..\:/Proyectos Android Gradle Fix/Kami - Kaze Java/app/src/main/res/mipmap-anydpi-v26/kz_logo.xml" value="0.317" />
         <entry key="..\:/Proyectos Android Gradle Fix/Kami - Kaze Java/app/src/main/res/mipmap-anydpi-v26/kz_logo_round.xml" value="0.317" />
+        <entry key="..\:/Users/jsgpa/Kami-Kaze-Android/app/src/main/res/layout/sin_internet_layout.xml" value="0.1675929884566054" />
       </map>
     </option>
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="openjdk-18" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="openjdk-18" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
