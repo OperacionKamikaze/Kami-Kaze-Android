@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import es.kamikaze.app.databinding.ActivitySplashScreenBinding
+import es.kamikaze.app.ui.tutorial.TutorialActivity
 import es.kamikaze.app.util.Permisos
 
 @SuppressLint("CustomSplashScreen")
@@ -46,9 +47,25 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        if (!permisos.hasAllPerms())
+        if (!permisos.hasAllPerms()){
             iniciarPermisos()
+        }
         mediaPlayer?.stop()
+    }
+
+    private fun usuarioLogueado() : Boolean{
+        val gson = Gson()
+        val json: String = mPrefs.getString("MyObject", "")
+        val obj: MyObject = gson.fromJson(json, MyObject::class.java)
+
+        val prefs: SharedPreferences = getSharedPreferences("spKz_user", Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putBoolean("firstStart", false)
+        editor.apply()
+        if (prefs.getBoolean("kz_user", true)){
+            return true
+        }
+        return false
     }
 
     override fun onDestroy() {
@@ -62,6 +79,8 @@ class SplashActivity : AppCompatActivity() {
 
         if (firstStart) {
             permisosPrimeraVez()
+            startActivity(Intent(this, TutorialActivity::class.java))
+            finish()
             return
         }
 
