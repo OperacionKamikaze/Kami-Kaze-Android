@@ -75,6 +75,8 @@ dependencies {
     implementation dependencyImport.navigationFragment
     implementation dependencyImport.navigationUi
     implementation dependencyImport.splashScreen
+    implementation dependencyImport.coroutines
+    implementation dependencyImport.gson
 
     // External dependencies
     implementation dependencyImport.lottie
