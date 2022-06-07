@@ -25,9 +25,9 @@
 
     <fragment
         android:id="@+id/navigation_bolsa"
-        android:name="es.kamikaze.app.ui.bolsa.BolsaFragment"
+        android:name="es.kamikaze.app.ui.bolsa.PerfilFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_bolsa" />
+        tools:layout="@layout/fragment_perfil" />
 
     <fragment
         android:id="@+id/navigation_social"

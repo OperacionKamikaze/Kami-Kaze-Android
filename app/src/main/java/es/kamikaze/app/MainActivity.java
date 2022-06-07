@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import es.kamikaze.app.databinding.ActivityMainBinding;
-import es.kamikaze.app.ui.bolsa.BolsaFragment;
+import es.kamikaze.app.ui.bolsa.PerfilFragment;
 import es.kamikaze.app.ui.map.MapFragment;
 import es.kamikaze.app.ui.social.SocialFragment;
 import es.kamikaze.app.util.Permisos;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             Fragment temp = null;
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_bolsa) {
-                temp = new BolsaFragment();
+                temp = new PerfilFragment();
             } else if (itemId == R.id.navigation_social) {
                 temp = new SocialFragment();
             }

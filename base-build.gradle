@@ -61,7 +61,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':kz-components')
 
     // AndroidX
     compileOnly dependencyImport.lombok
@@ -90,4 +89,7 @@ dependencies {
 
     // Unit Testing Dependencies
     testImplementation dependencyImport.junit
+
+    // Development Libraries
+    implementation project(':kz-components')
 }
