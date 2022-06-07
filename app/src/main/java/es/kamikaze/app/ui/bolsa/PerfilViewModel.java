@@ -17,11 +17,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class BolsaViewModel extends ViewModel {
+public class PerfilViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public BolsaViewModel() {
+    public PerfilViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is dashboard fragment");
     }
