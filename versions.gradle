@@ -36,6 +36,9 @@ ext {
     navigationFragemntVersion = '2.4.2'
     navigationUiVersion = '2.4.2'
     splashScreenVersion = '1.0.0-rc01'
+    coroutinesVersion = '1.6.2'
+
+    // Testing
     junitVersion = '4.13.2'
 
     // External dependencies
@@ -68,6 +71,9 @@ ext {
             navigationFragment  : "androidx.navigation:navigation-fragment:$navigationFragemntVersion",
             navigationUi        : "androidx.navigation:navigation-ui:$navigationUiVersion",
             splashScreen        : "androidx.core:core-splashscreen:$splashScreenVersion",
+            coroutines          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+
+            // Testing
             junit               : "junit:junit:$junitVersion",
 
             // External dependencies
