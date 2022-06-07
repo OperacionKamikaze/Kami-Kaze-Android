@@ -37,6 +37,7 @@ ext {
     navigationUiVersion = '2.4.2'
     splashScreenVersion = '1.0.0-rc01'
     coroutinesVersion = '1.6.2'
+    gsonVersion = '2.9.0'
 
     // Testing
     junitVersion = '4.13.2'
@@ -72,6 +73,7 @@ ext {
             navigationUi        : "androidx.navigation:navigation-ui:$navigationUiVersion",
             splashScreen        : "androidx.core:core-splashscreen:$splashScreenVersion",
             coroutines          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+            gson                : "com.google.code.gson:gson:$gsonVersion",
 
             // Testing
             junit               : "junit:junit:$junitVersion",
