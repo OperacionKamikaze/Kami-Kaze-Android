@@ -20,24 +20,22 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
-import androidx.viewbinding.ViewBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import es.kamikaze.app.MainActivity
 import kotlin.system.exitProcess
 
-class Permisos(private val context: Context, private val activity: Activity, private val b: ViewBinding? = null) {
+class Permisos(private val context: Context, private val activity: Activity) {
 
     /**
      * Pedimos todos nuestros permisos.
      */
-    val permisos = arrayOf(
+    val listadoDePermisos = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.CAMERA
     )
 
-    private val codPermisos = 1
+    val codPermisos = 1
 
     /**
      * Método para ver los permisos en forma de bucle (Método, más corto existente), noi hace falta
@@ -133,8 +131,8 @@ class Permisos(private val context: Context, private val activity: Activity, pri
      * Método público general para pedir los permisos.
      */
     fun askPermissions() {
-        if (hasAllPerms(*permisos)) {
-            explainPermission(*permisos)
+        if (hasAllPerms(*listadoDePermisos)) {
+            explainPermission(*listadoDePermisos)
         }
     }
 
@@ -144,12 +142,9 @@ class Permisos(private val context: Context, private val activity: Activity, pri
     fun permissionsApp() {
         val alertDialog = MaterialAlertDialogBuilder(context)
             .setTitle("Necesitamos sus ¡permisos!")
-            .setMessage(
-                "La aplicación necesita una serie de permisos para poder continuar. Si se facilitan estos permisos, " +
-                        "la aplicación se cerrará ya que no tiene los permisos suficientes."
-            )
-            .setPositiveButton("¡Perfecto!") { dialog: DialogInterface, _: Int ->
-                if (hasAllPerms(*permisos)) {
+            .setMessage("La aplicación está comprobando sus permisos, son necesarios activarlos para poder continuar.")
+            .setPositiveButton("¡Continuar!") { dialog: DialogInterface, _: Int ->
+                if (hasAllPerms(*listadoDePermisos)) {
                     askPermissions()
                 } else {
                     activity.startActivity(Intent(activity, MainActivity::class.java))

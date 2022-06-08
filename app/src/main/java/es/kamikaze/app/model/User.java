@@ -42,8 +42,6 @@ public class User {
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString().toUpperCase();
-
-
     }
 
     private User(String username, int oro, int at, int def, int vel, int ps, int exp, int lvl) {
@@ -57,20 +55,18 @@ public class User {
         this.exp = exp;
     }
 
-    public static User getInstancia() {
+    public static synchronized User getInstancia() {
         if (instancia == null) {
             instancia = new User();
         }
         return instancia;
     }
 
-
     public static void setInstancia(User instancia) {
         User.instancia = instancia;
     }
 
     /*      GETTERS AND SETTERS        */
-
 
     public int getLevel() { //los niveles subirán de 20 puntos en 20 puntos
         int result = 0;

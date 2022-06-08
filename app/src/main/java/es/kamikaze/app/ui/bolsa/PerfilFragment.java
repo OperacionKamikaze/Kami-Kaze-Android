@@ -40,7 +40,7 @@ public class PerfilFragment extends Fragment {
         b.kztvMonedas.setText("ORO: 24500");
         b.kztvNivel.setText("LVL: 87");
 
-        bolsaViewModel.getText().observe(getViewLifecycleOwner(), b.kztvNombrePersonaje::setText);
+//        bolsaViewModel.getText().observe(getViewLifecycleOwner(), b.kztvNombrePersonaje::setText);
         return b.getRoot();
     }
 

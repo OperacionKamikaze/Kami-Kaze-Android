@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        permisos();
 
         androidViewModel = new ViewModelProvider(this).get(AndroidViewModel.class);
 
@@ -74,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void permisos() {
-        Permisos permisos = new Permisos(this, this, null);
-        if (permisos.hasAllPerms(permisos.getPermisos())) {
+        Permisos permisos = new Permisos(this, this);
+        if (permisos.hasAllPerms(permisos.getListadoDePermisos())) {
             permisos.permissionsApp();
         }
     }

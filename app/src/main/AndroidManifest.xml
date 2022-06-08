@@ -1,16 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2022. Operación Kami - Kaze.
-  ~
-  ~ Licensed under the GNU General Public License v3.0
-  ~
-  ~ https://www.gnu.org/licenses/gpl-3.0.html
-  ~
-  ~ Permissions of this strong copyleft license are conditioned on making available complete
-  ~ source code of licensed works and modifications, which include larger works using a licensed
-  ~ work, under the same license. Copyright and license notices must be preserved. Contributors
-  ~ provide an express grant of patent rights.
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="es.kamikaze.app">
@@ -35,17 +23,20 @@
         android:theme="@style/Theme.KamiKaze"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".ui.tutorial.TutorialActivity"
+            android:exported="false"
+            android:theme="@style/Theme.KamiKaze" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.KamiKaze.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -58,4 +49,5 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
     </application>
+
 </manifest>

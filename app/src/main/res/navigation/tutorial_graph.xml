@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2022. Operación Kami - Kaze.
+  ~
+  ~ Licensed under the GNU General Public License v3.0
+  ~
+  ~ https://www.gnu.org/licenses/gpl-3.0.html
+  ~
+  ~ Permissions of this strong copyleft license are conditioned on making available complete
+  ~ source code of licensed works and modifications, which include larger works using a licensed
+  ~ work, under the same license. Copyright and license notices must be preserved. Contributors
+  ~ provide an express grant of patent rights.
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstTutorialFragment">
+
+    <fragment
+        android:id="@+id/secondTutorialFragment"
+        android:name="es.kamikaze.app.ui.tutorial.SecondTutorialFragment"
+        android:label="fragment_tutorial_second"
+        tools:layout="@layout/fragment_tutorial_second" >
+        <action
+            android:id="@+id/action_secondTutorialFragment_to_firstTutorialFragment"
+            app:destination="@id/firstTutorialFragment" />
+        <action
+            android:id="@+id/action_secondTutorialFragment_to_lastTutorialFragment"
+            app:destination="@id/lastTutorialFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstTutorialFragment"
+        android:name="es.kamikaze.app.ui.tutorial.FirstTutorialFragment"
+        android:label="fragment_tutorial_first"
+        tools:layout="@layout/fragment_tutorial_first" >
+        <action
+            android:id="@+id/action_firstTutorialFragment_to_secondTutorialFragment"
+            app:destination="@id/secondTutorialFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lastTutorialFragment"
+        android:name="es.kamikaze.app.ui.tutorial.LastTutorialFragment"
+        android:label="fragment_tutorial_zlast"
+        tools:layout="@layout/fragment_tutorial_zlast" >
+        <action
+            android:id="@+id/action_lastTutorialFragment_to_secondTutorialFragment"
+            app:destination="@id/secondTutorialFragment" />
+    </fragment>
+</navigation>
