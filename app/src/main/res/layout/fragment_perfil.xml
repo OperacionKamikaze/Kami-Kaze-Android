@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022. Operación Kami - Kaze.
+  ~
+  ~ Licensed under the GNU General Public License v3.0
+  ~
+  ~ https://www.gnu.org/licenses/gpl-3.0.html
+  ~
+  ~ Permissions of this strong copyleft license are conditioned on making available complete
+  ~ source code of licensed works and modifications, which include larger works using a licensed
+  ~ work, under the same license. Copyright and license notices must be preserved. Contributors
+  ~ provide an express grant of patent rights.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/KZBaseRegularTextStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey_three"
+    android:padding="@dimen/dimen_16dp"
+    android:scrollbarThumbHorizontal="@color/cerulean_two"
+    android:scrollbarThumbVertical="@color/action_text_color"
+    tools:context=".ui.bolsa.PerfilFragment">
+
+    <es.kamikaze.components.KzTextView
+        android:id="@+id/kztvNombrePersonaje"
+        style="@style/KZTextXLargeBoldStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/app_name" />
+
+    <es.kamikaze.components.KzTextView
+        android:id="@+id/kztvMonedas"
+        style="@style/KZTextSmallRegularBoldStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/kztvNombrePersonaje"
+        app:layout_constraintTop_toTopOf="@+id/kztvNombrePersonaje"
+        tools:text="ORO: 0€" />
+
+    <es.kamikaze.components.KzTextView
+        android:id="@+id/kztvNivel"
+        style="@style/KZTextSmallRegularBoldStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/kztvNombrePersonaje"
+        app:layout_constraintEnd_toEndOf="@+id/kztvMonedas"
+        app:layout_constraintStart_toStartOf="@+id/kztvMonedas"
+        app:layout_constraintTop_toBottomOf="@+id/kztvMonedas"
+        tools:text="LV: 1" />
+
+    <es.kamikaze.components.KzTextView
+        android:id="@+id/kztvVida"
+        style="@style/KZTextMediumRegularStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="VIDA"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kztvNombrePersonaje"
+        tools:text="VIDA" />
+
+    <ProgressBar
+        android:id="@+id/pbVida"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/kztvVida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/kztvVida"
+        app:layout_constraintTop_toTopOf="@+id/kztvVida" />
+
+    <es.kamikaze.components.KzTextView
+        android:id="@+id/kztvExperiencia"
+        style="@style/KZTextMediumRegularStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="EXP"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kztvVida"
+        tools:text="EXP" />
+
+    <ProgressBar
+        android:id="@+id/pbExperiencia"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/kztvExperiencia"
+        app:layout_constraintEnd_toEndOf="@+id/pbVida"
+        app:layout_constraintStart_toStartOf="@+id/pbVida"
+        app:layout_constraintTop_toTopOf="@+id/kztvExperiencia" />
+
+    <es.kamikaze.components.KzStatsField
+        android:id="@+id/kzsfAtaque"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_90dp"
+        app:kztvFieldName="Ataque"
+        app:kztvFieldValue="201"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="166dp" />
+
+    <es.kamikaze.components.KzStatsField
+        android:id="@+id/kzsfDefensa"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:kztvFieldName="Defensa"
+        app:kztvFieldValue="187"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="166dp" />
+
+    <es.kamikaze.components.KzStatsField
+        android:id="@+id/kzsfVelocidad"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:kztvFieldName="Velocidad"
+        app:kztvFieldValue="308"
+        tools:layout_editor_absoluteX="283dp"
+        tools:layout_editor_absoluteY="166dp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:constraint_referenced_ids="kzsfAtaque, kzsfVelocidad, kzsfDefensa"
+        app:flow_horizontalStyle="spread_inside"
+        app:flow_wrapMode="none"
+        app:layout_constraintEnd_toEndOf="@+id/pbExperiencia"
+        app:layout_constraintStart_toStartOf="@+id/kztvExperiencia"
+        app:layout_constraintTop_toBottomOf="@+id/pbExperiencia" />
+
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/macgregor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flow" />
+</androidx.constraintlayout.widget.ConstraintLayout>
