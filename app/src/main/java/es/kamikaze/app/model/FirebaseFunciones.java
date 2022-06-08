@@ -49,7 +49,7 @@ public class FirebaseFunciones {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.v("xyzy", snapshot.getValue().toString());
                 Log.v("xyzyx", snapshot.getValue().toString());
-                users1.add((User) snapshot.getValue());
+//                users1.add((User) snapshot.getValue());
                 //Log.v("xyzyx", users1.toString());
             }
 

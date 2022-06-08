@@ -11,20 +11,14 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app;
+package es.kamikaze.app.ui.map;
 
-import android.app.Application;
+import com.google.android.gms.maps.model.Marker;
 
-import androidx.appcompat.app.AppCompatDelegate;
+public interface OnEnemySpawnListener {
 
-import es.kamikaze.app.model.User;
+    void enemySpawn();
 
-public class KamiKaze extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        User user = User.getInstancia();
-        // Iniciar configuraciones y conexiones previas.
-    }
+    void enemyDelete(Marker enemy);
+
 }
