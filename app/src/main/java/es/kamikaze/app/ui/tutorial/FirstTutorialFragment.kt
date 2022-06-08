@@ -20,30 +20,36 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import es.kamikaze.app.R
-import es.kamikaze.app.databinding.FragmentFirstBinding
+import es.kamikaze.app.databinding.FragmentTutorialFirstBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class FirstTutorialFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentTutorialFirstBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    private val b get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        return binding.root
-
+        _binding = FragmentTutorialFirstBinding.inflate(inflater, container, false)
+        return b.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        b.kzBocadillo.setData(
+            "Bienvenido a Kami - Kaze", 18F, "Hola, yo soy Modesto y seré tu guía. Te daré " +
+                    "algunos consejos: ", 15F
+        )
+
+        b.kzBocadillo.setDescriptionMargin(null, 60, null, null)
+
+        b.btIrAJugar.setOnClickListener {
+            findNavController().navigate(R.id.action_firstTutorialFragment_to_secondTutorialFragment)
         }
     }
 

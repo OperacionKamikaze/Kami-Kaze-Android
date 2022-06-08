@@ -16,26 +16,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/firstTutorialFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="es.kamikaze.app.ui.tutorial.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/secondTutorialFragment"
+        android:name="es.kamikaze.app.ui.tutorial.SecondTutorialFragment"
+        android:label="fragment_tutorial_second"
+        tools:layout="@layout/fragment_tutorial_second" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_secondTutorialFragment_to_firstTutorialFragment"
+            app:destination="@id/firstTutorialFragment" />
+        <action
+            android:id="@+id/action_secondTutorialFragment_to_lastTutorialFragment"
+            app:destination="@id/lastTutorialFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="es.kamikaze.app.ui.tutorial.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/firstTutorialFragment"
+        android:name="es.kamikaze.app.ui.tutorial.FirstTutorialFragment"
+        android:label="fragment_tutorial_first"
+        tools:layout="@layout/fragment_tutorial_first" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_firstTutorialFragment_to_secondTutorialFragment"
+            app:destination="@id/secondTutorialFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lastTutorialFragment"
+        android:name="es.kamikaze.app.ui.tutorial.LastTutorialFragment"
+        android:label="fragment_tutorial_zlast"
+        tools:layout="@layout/fragment_tutorial_zlast" >
+        <action
+            android:id="@+id/action_lastTutorialFragment_to_secondTutorialFragment"
+            app:destination="@id/secondTutorialFragment" />
     </fragment>
 </navigation>

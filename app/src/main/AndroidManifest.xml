@@ -22,9 +22,8 @@
         android:theme="@style/Theme.KamiKaze"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".TutorialActivity"
+            android:name=".ui.tutorial.TutorialActivity"
             android:exported="false"
-            android:label="@string/title_activity_tutorial"
             android:theme="@style/Theme.KamiKaze" />
         <activity
             android:name=".SplashActivity"
@@ -36,7 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

@@ -18,11 +18,12 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import es.kamikaze.app.databinding.ActivitySplashScreenBinding
 import es.kamikaze.app.ui.tutorial.TutorialActivity
 import es.kamikaze.app.util.Permisos
@@ -31,9 +32,9 @@ import es.kamikaze.app.util.Permisos
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var b: ActivitySplashScreenBinding
-    private var permisos: Permisos = null ?: Permisos(this, this)
     private val splashTimeOut: Long = 3000
     private var mediaPlayer: MediaPlayer? = null
+    private val permisos = Permisos(this, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,36 +42,47 @@ class SplashActivity : AppCompatActivity() {
         mediaPlayer = MediaPlayer.create(this, R.raw.kz_splash_intro)
         mediaPlayer?.start()
         Thread.sleep(splashTimeOut)
-        permisos = Permisos(this, this, b)
-        iniciarPermisos()
+
+        if (permisos.hasAllPerms(*permisos.listadoDePermisos)) {
+            iniciarPermisos()
+        } else {
+            usuarioLogueado()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            permisos.codPermisos -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    usuarioLogueado()
+                } else {
+                    iniciarPermisos()
+                }
+            }
+        }
     }
 
     override fun onPause() {
         super.onPause()
-        if (!permisos.hasAllPerms()){
-            iniciarPermisos()
-        }
         mediaPlayer?.stop()
-    }
-
-    private fun usuarioLogueado() : Boolean{
-        val gson = Gson()
-        val json: String = mPrefs.getString("MyObject", "")
-        val obj: MyObject = gson.fromJson(json, MyObject::class.java)
-
-        val prefs: SharedPreferences = getSharedPreferences("spKz_user", Context.MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putBoolean("firstStart", false)
-        editor.apply()
-        if (prefs.getBoolean("kz_user", true)){
-            return true
-        }
-        return false
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer?.stop()
+    }
+
+    private fun usuarioLogueado() {
+        val prefsUser: SharedPreferences = getSharedPreferences("userCreate", Context.MODE_PRIVATE)
+        val user = prefsUser.getString("singletonUser", "")
+        if (user == "") {
+            startActivity(Intent(this, TutorialActivity::class.java))
+            finish()
+        } else {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 
     private fun iniciarPermisos() {
@@ -79,36 +91,31 @@ class SplashActivity : AppCompatActivity() {
 
         if (firstStart) {
             permisosPrimeraVez()
-            startActivity(Intent(this, TutorialActivity::class.java))
-            finish()
             return
         }
 
         // Si el usuario no ha aceptado los permisos, se le mostrará un mensaje de error
-        if (permisos.hasAllPerms(*permisos.permisos)) {
+        if (permisos.hasAllPerms(*permisos.listadoDePermisos)) {
             permisos.permissionsApp()
             return
         }
-
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
     }
 
     private fun permisosPrimeraVez() {
         val madb = MaterialAlertDialogBuilder(this)
-            .setTitle("Primera vez en abrir la App")
+            .setTitle("¡Vaya!, parece que eres nuevo...")
             .setMessage(
                 """
-        Parece que es la primera vez que abres la aplicación.
-        
-        Necesita aceptar una serie de permisos para poder continuar, si no la aplicación no podrá hacer las operaciones correctamente.
+        Acabas de instalar la aplicación. Bienvenido.
+        Se necesitan aceptar una serie de permisos para poder continuar, si no la aplicación no podrá hacer sus 
+        operaciones correctamente.
         """.trimIndent()
             )
             .setPositiveButton("¡Vale!") { dialog: DialogInterface, _: Int ->
-                if (permisos.hasAllPerms(*permisos.permisos)) {
+                if (permisos.hasAllPerms(*permisos.listadoDePermisos)) {
                     permisos.askPermissions()
                 } else {
-                    Snackbar.make(b.root.rootView, "Tienes todos los permisos", Snackbar.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Tienes todos los permisos", Toast.LENGTH_LONG).show()
                 }
                 dialog.dismiss()
             }.setNegativeButton("Cancelar") { dialog: DialogInterface, _: Int -> dialog.cancel() }

@@ -13,36 +13,50 @@
 
 package es.kamikaze.app.ui.tutorial
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import es.kamikaze.app.R
-import es.kamikaze.app.databinding.FragmentSecondBinding
+import com.google.gson.Gson
+import es.kamikaze.app.MainActivity
+import es.kamikaze.app.databinding.FragmentTutorialZlastBinding
+import es.kamikaze.app.model.User
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class LastTutorialFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentTutorialZlastBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    private val b get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
-        return binding.root
+        _binding = FragmentTutorialZlastBinding.inflate(inflater, container, false)
+        return b.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        b.kzBocadillo.setData(
+            "¡Hola de nuevo!", 12F, "Yo soy Carmelo, cuando estés preparado, vamos a proceder a crear a tu personaje " +
+                    "y así poder empezar tu nueva aventura. Cuidado con los enemigos cercanos a tí.", 9F
+        )
+
+        b.btIrAJugar.setOnClickListener {
+            val prefs = requireActivity().getSharedPreferences("userCreate", Context.MODE_PRIVATE)
+            val editor = prefs.edit()
+            editor.putString("singletonUser", Gson().toJson(User.getInstancia()))
+            editor.apply()
+
+            startActivity(Intent(context, MainActivity::class.java))
+            activity?.finish()
         }
     }
 
