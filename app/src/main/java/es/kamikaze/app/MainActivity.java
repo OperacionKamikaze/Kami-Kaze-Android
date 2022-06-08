@@ -26,13 +26,13 @@ import es.kamikaze.app.databinding.ActivityMainBinding;
 import es.kamikaze.app.ui.bolsa.PerfilFragment;
 import es.kamikaze.app.ui.map.MapFragment;
 import es.kamikaze.app.ui.social.SocialFragment;
-import es.kamikaze.app.util.Broadcast;
+import es.kamikaze.app.util.InternetBroadcast;
 import es.kamikaze.app.util.Permisos;
 import es.kamikaze.app.viewmodel.AndroidViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    Broadcast broadcast = new Broadcast();
+    InternetBroadcast broadcast = new InternetBroadcast();
 
     private AndroidViewModel androidViewModel;
 
