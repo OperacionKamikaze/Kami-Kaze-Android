@@ -11,16 +11,15 @@
  * provide an express grant of patent rights.
  */
 
-dependencies {
-    implementation 'com.google.firebase:firebase-functions:20.1.0'
-}
+package es.kamikaze.app;
 
-plugins {
-    id 'com.android.application'
-    id 'com.google.gms.google-services'
-    id 'kotlin-android'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
-    id "org.jetbrains.qodana" version "0.1.13"
-}
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-apply from: '../base-build.gradle'
+public class FirebaseAplicacion {
+
+    private static final int NUMBER_OF_THREADS = Runtime.getRuntime().availableProcessors();
+
+    public static final ExecutorService threadExecutorPool = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
+}

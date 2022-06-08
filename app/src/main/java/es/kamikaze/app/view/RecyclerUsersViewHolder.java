@@ -11,16 +11,12 @@
  * provide an express grant of patent rights.
  */
 
-dependencies {
-    implementation 'com.google.firebase:firebase-functions:20.1.0'
-}
+package es.kamikaze.app.view;
 
-plugins {
-    id 'com.android.application'
-    id 'com.google.gms.google-services'
-    id 'kotlin-android'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
-    id "org.jetbrains.qodana" version "0.1.13"
-}
+import androidx.recyclerview.widget.RecyclerView;
 
-apply from: '../base-build.gradle'
+import es.kamikaze.app.viewmodel.AndroidViewModel;
+
+public class RecyclerUsersViewHolder extends RecyclerView.ViewHolder{
+    private AndroidViewModel viewModel;
+}

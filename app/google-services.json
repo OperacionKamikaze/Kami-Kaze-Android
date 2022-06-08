@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "65800382453-140oi1ukt028ia9ohisi8590uhvcsjk7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.kamikaze.app",
+            "certificate_hash": "e4b3cee548d1aa58bc036edc31362e5d674fe14b"
+          }
+        },
+        {
           "client_id": "65800382453-plkcugius35ps64lvl8m0n8n4ocfnuk4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
