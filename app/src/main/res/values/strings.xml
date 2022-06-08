@@ -16,4 +16,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="txt_sin_conexion">No tienes conexión a internet</string>
+    <string name="no_tienes_conexion_a_internet">No tienes conexion a internet</string>
+    <string name="reintentar">Reintentar</string>
 </resources>
