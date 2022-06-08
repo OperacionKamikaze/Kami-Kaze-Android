@@ -13,6 +13,8 @@
 
 package es.kamikaze.app.model;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -22,67 +24,43 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FirebaseFunciones {
 
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference collection = db.collection("user");
+    private DatabaseReference db = FirebaseDatabase.getInstance().getReference();
     private MutableLiveData<List<User>> users = new MutableLiveData<>();
 
     public void addUser(User user){
-        collection.add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.v("xyz", documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.v("xyz", e.toString());
-                    }
-                });
+        db.child("user").child("pepito").setValue(user);
     }
 
     public MutableLiveData<List<User>> readUser(){
-        collection.get().
-                addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            users.setValue(task.getResult().toObjects(User.class));
-                            /*for(Telefono c: telefonos){
-                                Log.v("xyz", c.toString());
-                            }*/
-                            for(QueryDocumentSnapshot document: task.getResult()){
-                                Log.v("xyz", document.getId()+" =>"+document.getData());
-                                Log.v("xyz", document.getData().getClass().getCanonicalName());
-                            }
-                        }else{
-                            Log.v("xyz", task.getException().toString());
-                        }
-                    }
-                });
+        List<User> users1 = new ArrayList<User>();
+        db.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.v("xyzy", snapshot.getValue().toString());
+                Log.v("xyzyx", snapshot.getValue().toString());
+                users1.add((User) snapshot.getValue());
+                //Log.v("xyzyx", users1.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        users.setValue(users1);
         return users;
     }
 
-    public void editUser(User user){
-        collection.document(user.getDni()).set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.v("xyz", aVoid.toString());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.v("xyz", e.toString());
-                    }
-                });
-    }
 
 }

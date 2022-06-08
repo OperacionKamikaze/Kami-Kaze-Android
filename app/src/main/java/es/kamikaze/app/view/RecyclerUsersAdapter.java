@@ -51,7 +51,8 @@ public class RecyclerUsersAdapter extends ListAdapter<User, RecyclerUsersViewHol
 
         @Override
         public boolean areContentsTheSame(@NonNull User oldItem, @NonNull User newItem) {
-            return oldItem.getNumTelef().equals(newItem.getNumTelef());
+            //return oldItem.getNumTelef().equals(newItem.getNumTelef());
+            return true;
         }
     }
 }
