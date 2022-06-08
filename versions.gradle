@@ -52,6 +52,7 @@ ext {
     firebaseAnalyticsVersion = '21.0.0'
     firebaseAuthVersion = '21.0.5'
     firebaseDatabaseVersion = '20.0.5'
+    firebaseFunctionsVersion = '20.1.0'
 
     dependencyImport = [
             // Plugins
@@ -87,6 +88,7 @@ ext {
             firebaseBom         : "com.google.firebase:firebase-bom:$firebaseBomVersion",
             firebaseAnalytics   : "com.google.firebase:firebase-analytics:$firebaseAnalyticsVersion",
             firebaseAuth        : "com.google.firebase:firebase-auth:$firebaseAuthVersion",
-            firebaseDatabase    : "com.google.firebase:firebase-database:$firebaseDatabaseVersion"
+            firebaseDatabase    : "com.google.firebase:firebase-database:$firebaseDatabaseVersion",
+            firebaseFunctions    : "com.google.firebase:firebase-functions:$firebaseFunctionsVersion"
     ]
 }
