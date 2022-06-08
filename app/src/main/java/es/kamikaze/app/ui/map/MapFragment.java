@@ -23,6 +23,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,19 +45,26 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Random;
 
 import es.kamikaze.app.MainActivity;
 import es.kamikaze.app.R;
 import es.kamikaze.app.databinding.FragmentMapBinding;
+import es.kamikaze.app.util.UtilThread;
 
-public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListener, LocationListener {
+public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListener, LocationListener, OnEnemySpawnListener {
 
     public static GoogleMap mapa;
     private MapViewModel mapViewModel;
     private FragmentMapBinding binding;
     private MainActivity main;
     private LocationManager locationManager;
+    private Location localizacion;
 
 
     /* MAPA Y SUS METODOS */
@@ -98,6 +107,16 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                 locationManager = (LocationManager) main.getSystemService(Context.LOCATION_SERVICE);
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 100, MapFragment.this);
             }
+
+            mapa.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(@NonNull Marker marker) {
+                    marker.remove();
+                    Toast.makeText(MapFragment.this.getContext(), "UNITY AL ATAKE", Toast.LENGTH_LONG).show();
+                    return false;
+                }
+            });
+
             //hacemos que lacamara enfoque a nuestra localizacion
             /*CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(new LatLng(mapa.getMyLocation().getLatitude(),mapa.getMyLocation().getLatitude()))     // Sets the center of the map
@@ -106,7 +125,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                     .build();                 // Creates a CameraPosition from the builder
             //mapa.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));*/
 
-            crearMarcador(new LatLng(37.1519, -3.6231));
+            //crearMarcador(new LatLng(37.1519, -3.6231));
 
             //LatLng sydney = new LatLng(-34, 151);
             //googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
@@ -154,10 +173,10 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                     }
                 }
             });*/
+
         }
     };
 
-    //TODO: no me funciona
     @Override
     public void onCameraIdle() {
         Toast.makeText(main.getBaseContext(), mapa.getCameraPosition().toString(), Toast.LENGTH_SHORT).show();
@@ -201,6 +220,8 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                 .tilt(30)                   // Sets the tilt of the camera to 30 degrees
                 .build();                  // Creates a CameraPosition from the builder
         mapa.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        mapViewModel.startEnemies(this);
+        localizacion = location;
     }
 
 
@@ -210,6 +231,8 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mapViewModel = new ViewModelProvider(this).get(MapViewModel.class);
+
+
 
         binding = FragmentMapBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -232,5 +255,45 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void enemySpawn() {
+        Random rand = new Random(); //instance of random class
+        Double lat = localizacion.getLatitude() + (Double) ((rand.nextDouble() * 5.0) - 2.5 ) / 10000;
+        Double lng = localizacion.getLongitude() + (Double) ((rand.nextDouble() * 5.0) - 2.5 ) / 10000;
+        MarkerOptions enemigoOptions = new MarkerOptions()
+                .position(new LatLng(
+                        lat,
+                        lng
+                ))
+                .title("Enemigo").icon(BitmapFromVector(main.getBaseContext(),
+                R.drawable.icononemigo));
+
+
+
+
+        //onClickListener
+
+        //mapa.addMarker(enemigo);
+        // Get a handler that can be used to post to the main thread
+        Handler mainHandler = new Handler(this.requireContext().getMainLooper());
+
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                Marker enemigo;
+                enemigo = mapa.addMarker( enemigoOptions );
+                mapViewModel.addEnemigo(enemigo);
+
+
+            } // This is your code
+        };
+        mainHandler.post(myRunnable);
+    }
+
+    @Override
+    public void enemyDelete(Marker enemy) {
+        enemy.remove();
     }
 }

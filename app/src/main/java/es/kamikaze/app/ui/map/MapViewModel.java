@@ -13,19 +13,84 @@
 
 package es.kamikaze.app.ui.map;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
+
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MapViewModel extends ViewModel {
 
     //private MutableLiveData<String> mText;
     //private FragmentMapBinding binding;
+    private ArrayList<Marker> enemigos = new ArrayList<>();
+    private Boolean enemiesStarted = false;
 
 
     public MapViewModel() {
         //mText = new MutableLiveData<>();
         //mText.setValue("This is home fragment");
     }
+
     /*public LiveData<String> getText() {
         return mText;
     }*/
+
+    public void startEnemies(OnEnemySpawnListener listener){
+
+        if (!enemiesStarted) {
+            enemiesStarted = true;
+            Random rand = new Random(); //instance of random class
+            /*int upperbound = 25;
+            //generate random values from 0-24
+            int int_random = rand.nextInt(upperbound);
+            double double_random = rand.nextDouble();
+            float float_random = rand.nextFloat();*/
+
+            new Thread(() -> {
+                //cada intervalo aleatorio de 1 a 3 minutos crea un enemigo aleatorio
+                Timer timer = new Timer();
+
+                timer.schedule( new TimerTask() {
+                    public void run() {
+                        if (enemigos.size() > 3){
+                            listener.enemyDelete(enemigos.get(0));
+                            deleteEnemigo();
+                            listener.enemySpawn();
+                        }else{
+                            listener.enemySpawn();
+                        }
+                    }
+                }, 0, (60*1000)*(rand.nextInt(3) + 1) );
+
+            }).run();
+        }
+    }
+
+    public void addEnemigo(Marker enemigo){
+        enemigos.add(enemigo);
+        Log.d("XYZ","Enemigos: " + enemigos.toString());
+    }
+
+
+    public void deleteEnemigo(){
+        if (enemigos.size() > 0){
+
+            //enemigos.get(0).remove();
+
+            enemigos.remove(0);
+        }
+
+        Log.d("XYZ DELETE","Enemigos: " + enemigos.toString());
+    }
+
+
 }

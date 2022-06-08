@@ -36,6 +36,10 @@ ext {
     navigationFragemntVersion = '2.4.2'
     navigationUiVersion = '2.4.2'
     splashScreenVersion = '1.0.0-rc01'
+    coroutinesVersion = '1.6.2'
+    gsonVersion = '2.9.0'
+
+    // Testing
     junitVersion = '4.13.2'
 
     // External dependencies
@@ -48,6 +52,7 @@ ext {
     firebaseAnalyticsVersion = '21.0.0'
     firebaseAuthVersion = '21.0.5'
     firebaseDatabaseVersion = '20.0.5'
+    firebaseFunctionsVersion = '20.1.0'
 
     dependencyImport = [
             // Plugins
@@ -68,6 +73,10 @@ ext {
             navigationFragment  : "androidx.navigation:navigation-fragment:$navigationFragemntVersion",
             navigationUi        : "androidx.navigation:navigation-ui:$navigationUiVersion",
             splashScreen        : "androidx.core:core-splashscreen:$splashScreenVersion",
+            coroutines          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+            gson                : "com.google.code.gson:gson:$gsonVersion",
+
+            // Testing
             junit               : "junit:junit:$junitVersion",
 
             // External dependencies
@@ -79,6 +88,7 @@ ext {
             firebaseBom         : "com.google.firebase:firebase-bom:$firebaseBomVersion",
             firebaseAnalytics   : "com.google.firebase:firebase-analytics:$firebaseAnalyticsVersion",
             firebaseAuth        : "com.google.firebase:firebase-auth:$firebaseAuthVersion",
-            firebaseDatabase    : "com.google.firebase:firebase-database:$firebaseDatabaseVersion"
+            firebaseDatabase    : "com.google.firebase:firebase-database:$firebaseDatabaseVersion",
+            firebaseFunctions    : "com.google.firebase:firebase-functions:$firebaseFunctionsVersion"
     ]
 }

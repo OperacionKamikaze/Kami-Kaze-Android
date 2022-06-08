@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ Copyright (c) 2022. Operación Kami - Kaze.
   ~
   ~ Licensed under the GNU General Public License v3.0
@@ -12,11 +12,5 @@
   -->
 
 <resources>
-    <color name="primaryColor">#005fe8</color>
-    <color name="primaryLightColor">#658cff</color>
-    <color name="primaryDarkColor">#0037b5</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryDarkColor">#3672FF</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <dimen name="fab_margin">48dp</dimen>
 </resources>

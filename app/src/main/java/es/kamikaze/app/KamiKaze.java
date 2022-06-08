@@ -24,7 +24,6 @@ public class KamiKaze extends Application {
     public void onCreate() {
         super.onCreate();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        User user = new User();
         // Iniciar configuraciones y conexiones previas.
     }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ Copyright (c) 2022. Operación Kami - Kaze.
   ~
   ~ Licensed under the GNU General Public License v3.0
@@ -11,13 +11,6 @@
   ~ provide an express grant of patent rights.
   -->
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:drawable="@color/black" />
-
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/kami_kaze_logo" />
-    </item>
-</layer-list>
+<resources>
+    <dimen name="fab_margin">48dp</dimen>
+</resources>

@@ -23,7 +23,7 @@ public class User {
     private int oro, at, def, vel, ps, exp;
     private String Username;
 
-    public User() {
+    private User() {
         instancia = this;
         oro = 0;
         at = 1;
@@ -44,7 +44,7 @@ public class User {
                 .toString().toUpperCase();
     }
 
-    public User(String username, int oro, int at, int def, int vel, int ps, int exp, int lvl) {
+    private User(String username, int oro, int at, int def, int vel, int ps, int exp, int lvl) {
         instancia = this;
 
         this.oro = oro;
@@ -55,15 +55,18 @@ public class User {
         this.exp = exp;
     }
 
-    public static User getInstancia() {
+    public static synchronized User getInstancia() {
+        if (instancia == null) {
+            instancia = new User();
+        }
         return instancia;
     }
-
-    /*      GETTERS AND SETTERS        */
 
     public static void setInstancia(User instancia) {
         User.instancia = instancia;
     }
+
+    /*      GETTERS AND SETTERS        */
 
     public int getLevel() { //los niveles subirán de 20 puntos en 20 puntos
         int result = 0;

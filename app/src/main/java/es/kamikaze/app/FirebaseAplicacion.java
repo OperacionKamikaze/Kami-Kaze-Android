@@ -11,21 +11,15 @@
  * provide an express grant of patent rights.
  */
 
-apply from: 'base-project-build.gradle'
+package es.kamikaze.app;
 
-buildscript {
-    apply from: 'versions.gradle'
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
+public class FirebaseAplicacion {
 
-    dependencies {
-        classpath dependencyImport.googleServicesPlugin
-        classpath dependencyImport.mapsplaformPlugin
-        classpath dependencyImport.gradlePlugin
-        classpath dependencyImport.kotlinPlugin
-    }
+    private static final int NUMBER_OF_THREADS = Runtime.getRuntime().availableProcessors();
+
+    public static final ExecutorService threadExecutorPool = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
 }

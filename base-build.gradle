@@ -61,7 +61,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':kz-components')
 
     // AndroidX
     compileOnly dependencyImport.lombok
@@ -76,6 +75,8 @@ dependencies {
     implementation dependencyImport.navigationFragment
     implementation dependencyImport.navigationUi
     implementation dependencyImport.splashScreen
+    implementation dependencyImport.coroutines
+    implementation dependencyImport.gson
 
     // External dependencies
     implementation dependencyImport.lottie
@@ -87,7 +88,11 @@ dependencies {
     implementation dependencyImport.firebaseAnalytics
     implementation dependencyImport.firebaseAuth
     implementation dependencyImport.firebaseDatabase
+    implementation dependencyImport.firebaseFunctions
 
     // Unit Testing Dependencies
     testImplementation dependencyImport.junit
+
+    // Development Libraries
+    implementation project(':kz-components')
 }

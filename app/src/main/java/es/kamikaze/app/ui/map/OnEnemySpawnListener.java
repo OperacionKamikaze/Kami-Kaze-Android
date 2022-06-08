@@ -11,21 +11,14 @@
  * provide an express grant of patent rights.
  */
 
-apply from: 'base-project-build.gradle'
+package es.kamikaze.app.ui.map;
 
-buildscript {
-    apply from: 'versions.gradle'
+import com.google.android.gms.maps.model.Marker;
 
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
+public interface OnEnemySpawnListener {
 
-    dependencies {
-        classpath dependencyImport.googleServicesPlugin
-        classpath dependencyImport.mapsplaformPlugin
-        classpath dependencyImport.gradlePlugin
-        classpath dependencyImport.kotlinPlugin
-    }
+    void enemySpawn();
+
+    void enemyDelete(Marker enemy);
+
 }
