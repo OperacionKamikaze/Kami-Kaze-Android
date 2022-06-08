@@ -44,7 +44,6 @@ public class User {
                 .toString().toUpperCase();
 
 
-        instancia = this;
     }
 
     private User(String username, int oro, int at, int def, int vel, int ps, int exp, int lvl) {
