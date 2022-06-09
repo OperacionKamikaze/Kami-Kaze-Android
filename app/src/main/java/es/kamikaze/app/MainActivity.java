@@ -30,23 +30,38 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         permisos();
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        ActivityMainBinding b = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(b.getRoot());
+        binding.bottomNavView.setBackground(null);
 
-        b.bottomNavView.setBackground(null);
-        b.bottomNavView.getMenu().getItem(1).setEnabled(false);
+        binding.bottomNavView.getMenu().getItem(1).setEnabled(false);
 
-        b.fabMap.setOnClickListener(v -> getSupportFragmentManager().beginTransaction().replace(
-                R.id.navHostFragmentContainer, new MapFragment()).commit());
+        MapFragment mapFragment = new MapFragment();
+        SocialFragment socialFragment = new SocialFragment();
+        BolsaFragment bolsaFragment = new BolsaFragment();
 
-        b.bottomNavView.setOnItemSelectedListener(item -> {
+        getSupportFragmentManager().beginTransaction().replace( R.id
+                .navHostFragmentContainer, mapFragment ).commit();
+        binding.bottomNavView.getMenu().getItem(1).setChecked(true);
+
+
+
+        binding.fabMap.setOnClickListener(v -> {
+                    getSupportFragmentManager().beginTransaction().replace( R.id
+                            .navHostFragmentContainer, mapFragment ).commit();
+
+                    binding.bottomNavView.getMenu().getItem(1).setChecked(true);
+                }
+        );
+
+        binding.bottomNavView.setOnItemSelectedListener(item -> {
             Fragment temp = null;
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_bolsa) {
-                temp = new BolsaFragment();
+                temp = bolsaFragment;
             } else if (itemId == R.id.navigation_social) {
-                temp = new SocialFragment();
+                temp = socialFragment;
             }
             if (temp != null) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.navHostFragmentContainer, temp).commit();

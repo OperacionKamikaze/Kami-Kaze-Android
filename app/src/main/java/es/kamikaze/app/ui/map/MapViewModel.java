@@ -33,6 +33,7 @@ public class MapViewModel extends ViewModel {
     //private FragmentMapBinding binding;
     private ArrayList<Marker> enemigos = new ArrayList<>();
     private Boolean enemiesStarted = false;
+    private Thread generaEnemigos;
 
 
     public MapViewModel() {
@@ -55,23 +56,27 @@ public class MapViewModel extends ViewModel {
             double double_random = rand.nextDouble();
             float float_random = rand.nextFloat();*/
 
-            new Thread(() -> {
+            generaEnemigos = new Thread(() -> {
                 //cada intervalo aleatorio de 1 a 3 minutos crea un enemigo aleatorio
                 Timer timer = new Timer();
 
                 timer.schedule( new TimerTask() {
+
                     public void run() {
-                        if (enemigos.size() > 3){
-                            listener.enemyDelete(enemigos.get(0));
-                            deleteEnemigo();
-                            listener.enemySpawn();
-                        }else{
-                            listener.enemySpawn();
+                        if (enemiesStarted) {
+                            if (enemigos.size() > 3) {
+                                listener.enemyDelete(enemigos.get(0));
+                                deleteEnemigo();
+                            } else {
+                                listener.enemySpawn();
+                            }
                         }
                     }
                 }, 0, (60*1000)*(rand.nextInt(3) + 1) );
 
-            }).run();
+            });
+
+            generaEnemigos.run();
         }
     }
 
@@ -93,4 +98,7 @@ public class MapViewModel extends ViewModel {
     }
 
 
+    public void pause() {
+        enemiesStarted = false;
+    }
 }
