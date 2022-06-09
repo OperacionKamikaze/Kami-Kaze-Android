@@ -113,6 +113,17 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                 public boolean onMarkerClick(@NonNull Marker marker) {
                     marker.remove();
                     Toast.makeText(MapFragment.this.getContext(), "UNITY AL ATAKE", Toast.LENGTH_LONG).show();
+
+
+
+
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    marker.remove();
                     return false;
                 }
             });
@@ -185,13 +196,28 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
 
     public void crearMarcador(LatLng position) {
         //En nuestra app pueden haber varios tipos de criaturas que aparecerán
-        mapa.addMarker(new MarkerOptions().position(position).title("Enemigo").icon(BitmapFromVector(main.getBaseContext(), R.drawable.icononemigo)));
+        mapa.addMarker(new MarkerOptions().position(position).title("Enemigo").icon(BitmapFromVector(main.getBaseContext())));
 
 
     }
 
     //metodo usado para cambiar la imagen de los marcadores
-    private BitmapDescriptor BitmapFromVector(Context context, int vectorResId) {
+    private BitmapDescriptor BitmapFromVector(Context context) {
+        int vectorResId;
+        Random rand = new Random();
+        int numero = rand.nextInt(5);
+        if (numero < 1) {
+            vectorResId = R.drawable.ico_monster4;
+        }else if (numero < 2) {
+            vectorResId = R.drawable.ico_monster5;
+        }else if (numero < 3) {
+            vectorResId = R.drawable.ico_monster6;
+        }else if (numero < 4) {
+            vectorResId = R.drawable.ico_monster7;
+        }else{
+            vectorResId = R.drawable.ico_monster4;
+        }
+
         // below line is use to generate a drawable.
         Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
 
@@ -254,6 +280,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mapViewModel.pause();
         binding = null;
     }
 
@@ -267,8 +294,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                         lat,
                         lng
                 ))
-                .title("Enemigo").icon(BitmapFromVector(main.getBaseContext(),
-                R.drawable.icononemigo));
+                .title("Enemigo").icon(BitmapFromVector(main.getBaseContext()));
 
 
 
@@ -277,7 +303,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
 
         //mapa.addMarker(enemigo);
         // Get a handler that can be used to post to the main thread
-        Handler mainHandler = new Handler(this.requireContext().getMainLooper());
+        Handler mainHandler = new Handler(requireContext().getMainLooper());
 
         Runnable myRunnable = new Runnable() {
             @Override
@@ -294,6 +320,16 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
 
     @Override
     public void enemyDelete(Marker enemy) {
-        enemy.remove();
+
+
+        Handler mainHandler = new Handler(requireContext().getMainLooper());
+
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                enemy.remove();
+            } // This is your code
+        };
+        mainHandler.post(myRunnable);
     }
 }

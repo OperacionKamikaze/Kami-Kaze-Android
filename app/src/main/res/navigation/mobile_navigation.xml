@@ -20,18 +20,15 @@
     <fragment
         android:id="@+id/navigation_mapa"
         android:name="es.kamikaze.app.ui.map.MapFragment"
-        android:label="@string/title_home"
         tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/navigation_bolsa"
         android:name="es.kamikaze.app.ui.bolsa.PerfilFragment"
-        android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_perfil" />
 
     <fragment
         android:id="@+id/navigation_social"
         android:name="es.kamikaze.app.ui.social.SocialFragment"
-        android:label="@string/title_notifications"
         tools:layout="@layout/fragment_social" />
 </navigation>
