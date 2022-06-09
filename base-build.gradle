@@ -88,7 +88,9 @@ dependencies {
     implementation dependencyImport.firebaseAnalytics
     implementation dependencyImport.firebaseAuth
     implementation dependencyImport.firebaseDatabase
+    implementation dependencyImport.firebaseKTXDatabase
     implementation dependencyImport.firebaseFunctions
+    implementation dependencyImport.firebaseKTXFunctions
 
     // Unit Testing Dependencies
     testImplementation dependencyImport.junit

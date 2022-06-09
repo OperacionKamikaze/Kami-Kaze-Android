@@ -11,7 +11,7 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app
+package es.kamikaze.app.ui.activities
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -24,9 +24,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.gson.Gson
+import es.kamikaze.app.R
+import es.kamikaze.app.core.Permisos
+import es.kamikaze.app.data.model.User
 import es.kamikaze.app.databinding.ActivitySplashScreenBinding
 import es.kamikaze.app.ui.tutorial.TutorialActivity
-import es.kamikaze.app.util.Permisos
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -80,6 +83,7 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, TutorialActivity::class.java))
             finish()
         } else {
+            User.setInstancia(Gson().fromJson(user, User::class.java))
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

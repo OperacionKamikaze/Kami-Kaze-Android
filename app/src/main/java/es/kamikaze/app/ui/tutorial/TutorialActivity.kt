@@ -16,12 +16,6 @@ package es.kamikaze.app.ui.tutorial
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.google.android.material.snackbar.Snackbar
-import es.kamikaze.app.R
 import es.kamikaze.app.databinding.ActivityTutorialBinding
 
 class TutorialActivity : AppCompatActivity() {

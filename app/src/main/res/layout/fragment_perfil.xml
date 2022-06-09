@@ -21,7 +21,7 @@
     android:padding="@dimen/dimen_16dp"
     android:scrollbarThumbHorizontal="@color/cerulean_two"
     android:scrollbarThumbVertical="@color/action_text_color"
-    tools:context=".ui.bolsa.PerfilFragment">
+    tools:context=".ui.perfil.PerfilFragment">
 
     <es.kamikaze.components.KzTextView
         android:id="@+id/kztvNombrePersonaje"
@@ -103,8 +103,8 @@
         android:id="@+id/kzsfAtaque"
         android:layout_width="0dp"
         android:layout_height="@dimen/dimen_90dp"
-        app:kztvFieldName="Ataque"
-        app:kztvFieldValue="201"
+        tools:kztvFieldName="Ataque"
+        tools:kztvFieldValue="201"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="166dp" />
 
@@ -112,8 +112,8 @@
         android:id="@+id/kzsfDefensa"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:kztvFieldName="Defensa"
-        app:kztvFieldValue="187"
+        tools:kztvFieldName="Defensa"
+        tools:kztvFieldValue="187"
         tools:layout_editor_absoluteX="149dp"
         tools:layout_editor_absoluteY="166dp" />
 
@@ -121,8 +121,8 @@
         android:id="@+id/kzsfVelocidad"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:kztvFieldName="Velocidad"
-        app:kztvFieldValue="308"
+        tools:kztvFieldName="Velocidad"
+        tools:kztvFieldValue="308"
         tools:layout_editor_absoluteX="283dp"
         tools:layout_editor_absoluteY="166dp" />
 
@@ -146,7 +146,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:scaleType="fitXY"
-        android:src="@drawable/macgregor"
+        tools:src="@drawable/macgregor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

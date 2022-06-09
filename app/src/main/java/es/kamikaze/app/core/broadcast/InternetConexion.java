@@ -11,7 +11,7 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app.util;
+package es.kamikaze.app.core.broadcast;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

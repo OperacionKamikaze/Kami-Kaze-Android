@@ -52,10 +52,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
-import es.kamikaze.app.MainActivity;
-import es.kamikaze.app.R;
 import es.kamikaze.app.databinding.FragmentMapBinding;
-import es.kamikaze.app.util.UtilThread;
+import es.kamikaze.app.ui.activities.MainActivity;
+import es.kamikaze.app.R;
 
 public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListener, LocationListener, OnEnemySpawnListener {
 
