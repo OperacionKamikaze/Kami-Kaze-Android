@@ -11,20 +11,12 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app.model;
+package es.kamikaze.app.core
 
-public abstract class Item {
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
-    private int precio = 0;
 
-    public abstract void usar();
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    //El precio de la venta siempre será algo mas bajo que el de la compra
-    public int getPrecioVenta() {
-        return (int) ((precio - (precio % 0.8)) * 0.8);
-    }
+object FirebaseDatabaseApp {
+    fun getDatabase() = Firebase.database.getReference("users").child("/")
 }

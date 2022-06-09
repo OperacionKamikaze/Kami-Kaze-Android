@@ -89,6 +89,8 @@ ext {
             firebaseAnalytics   : "com.google.firebase:firebase-analytics:$firebaseAnalyticsVersion",
             firebaseAuth        : "com.google.firebase:firebase-auth:$firebaseAuthVersion",
             firebaseDatabase    : "com.google.firebase:firebase-database:$firebaseDatabaseVersion",
-            firebaseFunctions    : "com.google.firebase:firebase-functions:$firebaseFunctionsVersion"
+            firebaseKTXDatabase : "com.google.firebase:firebase-database-ktx:$firebaseDatabaseVersion",
+            firebaseFunctions   : "com.google.firebase:firebase-functions:$firebaseFunctionsVersion",
+            firebaseKTXFunctions: "com.google.firebase:firebase-functions-ktx:$firebaseFunctionsVersion"
     ]
 }

@@ -11,30 +11,26 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app;
+package es.kamikaze.app.ui.activities;
 
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
+import es.kamikaze.app.R;
+import es.kamikaze.app.core.Permisos;
+import es.kamikaze.app.core.broadcast.InternetBroadcast;
 import es.kamikaze.app.databinding.ActivityMainBinding;
-import es.kamikaze.app.ui.bolsa.PerfilFragment;
 import es.kamikaze.app.ui.map.MapFragment;
+import es.kamikaze.app.ui.perfil.PerfilFragment;
 import es.kamikaze.app.ui.social.SocialFragment;
-import es.kamikaze.app.util.InternetBroadcast;
-import es.kamikaze.app.util.Permisos;
-import es.kamikaze.app.viewmodel.AndroidViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     InternetBroadcast broadcast = new InternetBroadcast();
-
-    private AndroidViewModel androidViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
         MapFragment mapFragment = new MapFragment();
         SocialFragment socialFragment = new SocialFragment();
-        BolsaFragment bolsaFragment = new BolsaFragment();
+        PerfilFragment bolsaFragment = new PerfilFragment();
 
-        getSupportFragmentManager().beginTransaction().replace( R.id
-                .navHostFragmentContainer, mapFragment ).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.navHostFragmentContainer, mapFragment).commit();
         binding.bottomNavView.getMenu().getItem(1).setChecked(true);
 
-
-
         binding.fabMap.setOnClickListener(v -> {
-                    getSupportFragmentManager().beginTransaction().replace( R.id
-                            .navHostFragmentContainer, mapFragment ).commit();
+                    getSupportFragmentManager().beginTransaction().replace(
+                            R.id.navHostFragmentContainer, mapFragment
+                    ).commit();
 
                     binding.bottomNavView.getMenu().getItem(1).setChecked(true);
                 }
@@ -95,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(broadcast, filter);
-        Log.v("xyz", androidViewModel.getListaUsers().getValue().toString());
+        registerReceiver(broadcast, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
         super.onStart();
     }
 
