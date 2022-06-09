@@ -11,29 +11,26 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app.util;
+package es.kamikaze.app.core.broadcast;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
 
-public class conexion {
-    public static boolean estaConectadoInternet(Context context){
-
-        ConnectivityManager connectivityManager =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        if(connectivityManager != null){
-            NetworkInfo[] info = connectivityManager.getAllNetworkInfo();
-            if(info!=null){
-                for (NetworkInfo networkInfo : info) {
-                    if (networkInfo.getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
-                    }
+public class InternetConexion {
+    public static boolean estaConectadoInternet(Context context) {
+        ConnectivityManager connectMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectMan != null) {
+            Network[] networks = connectMan.getAllNetworks();
+            NetworkInfo networkInfo;
+            for (Network mNetwork : networks) {
+                networkInfo = connectMan.getNetworkInfo(mNetwork);
+                if (networkInfo.getState().equals(NetworkInfo.State.CONNECTED)) {
+                    return true;
                 }
             }
         }
-
         return false;
     }
 }

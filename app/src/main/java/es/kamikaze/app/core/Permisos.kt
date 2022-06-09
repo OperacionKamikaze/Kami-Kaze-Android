@@ -11,7 +11,7 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app.util
+package es.kamikaze.app.core
 
 import android.Manifest
 import android.app.Activity
@@ -21,7 +21,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import es.kamikaze.app.MainActivity
+import es.kamikaze.app.ui.activities.MainActivity
 import kotlin.system.exitProcess
 
 class Permisos(private val context: Context, private val activity: Activity) {

@@ -11,14 +11,17 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app.util;
+package es.kamikaze.app.ui.activities;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import android.app.Application;
 
-public class UtilThread {
+import androidx.appcompat.app.AppCompatDelegate;
 
-    private static final int NUMBER_OF_THREADS = Runtime.getRuntime().availableProcessors();
-
-    public static final ExecutorService threadExecutorPool = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+public class KamiKaze extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        // Iniciar configuraciones y conexiones previas.
+    }
 }

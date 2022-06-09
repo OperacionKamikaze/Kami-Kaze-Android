@@ -20,10 +20,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.gson.Gson
-import es.kamikaze.app.MainActivity
+import es.kamikaze.app.ui.activities.MainActivity
 import es.kamikaze.app.databinding.FragmentTutorialZlastBinding
-import es.kamikaze.app.model.User
+import es.kamikaze.app.data.model.User
+import es.kamikaze.app.ui.perfil.KZViewModel
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -35,6 +37,7 @@ class LastTutorialFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val b get() = _binding!!
+    private val kzViewModel : KZViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentTutorialZlastBinding.inflate(inflater, container, false)
@@ -53,6 +56,7 @@ class LastTutorialFragment : Fragment() {
             val prefs = requireActivity().getSharedPreferences("userCreate", Context.MODE_PRIVATE)
             val editor = prefs.edit()
             editor.putString("singletonUser", Gson().toJson(User.getInstancia()))
+            kzViewModel.addUser(User.getInstanciaActual())
             editor.apply()
 
             startActivity(Intent(context, MainActivity::class.java))

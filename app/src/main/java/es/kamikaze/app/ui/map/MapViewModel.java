@@ -13,14 +13,11 @@
 
 package es.kamikaze.app.ui.map;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,6 +30,7 @@ public class MapViewModel extends ViewModel {
     //private FragmentMapBinding binding;
     private ArrayList<Marker> enemigos = new ArrayList<>();
     private Boolean enemiesStarted = false;
+    private Thread generaEnemigos;
 
 
     public MapViewModel() {
@@ -44,7 +42,7 @@ public class MapViewModel extends ViewModel {
         return mText;
     }*/
 
-    public void startEnemies(OnEnemySpawnListener listener){
+    public void startEnemies(OnEnemySpawnListener listener) {
 
         if (!enemiesStarted) {
             enemiesStarted = true;
@@ -55,42 +53,49 @@ public class MapViewModel extends ViewModel {
             double double_random = rand.nextDouble();
             float float_random = rand.nextFloat();*/
 
-            new Thread(() -> {
+            generaEnemigos = new Thread(() -> {
                 //cada intervalo aleatorio de 1 a 3 minutos crea un enemigo aleatorio
                 Timer timer = new Timer();
 
-                timer.schedule( new TimerTask() {
+                timer.schedule(new TimerTask() {
+
                     public void run() {
-                        if (enemigos.size() > 3){
-                            listener.enemyDelete(enemigos.get(0));
-                            deleteEnemigo();
-                            listener.enemySpawn();
-                        }else{
-                            listener.enemySpawn();
+                        if (enemiesStarted) {
+                            if (enemigos.size() > 3) {
+                                listener.enemyDelete(enemigos.get(0));
+                                deleteEnemigo();
+                            } else {
+                                listener.enemySpawn();
+                            }
                         }
                     }
-                }, 0, (60*1000)*(rand.nextInt(3) + 1) );
+                }, 0, (60 * 1000) * (rand.nextInt(3) + 1));
 
-            }).run();
+            });
+
+            generaEnemigos.run();
         }
     }
 
-    public void addEnemigo(Marker enemigo){
+    public void addEnemigo(Marker enemigo) {
         enemigos.add(enemigo);
-        Log.d("XYZ","Enemigos: " + enemigos.toString());
+        Log.d("XYZ", "Enemigos: " + enemigos.toString());
     }
 
 
-    public void deleteEnemigo(){
-        if (enemigos.size() > 0){
+    public void deleteEnemigo() {
+        if (enemigos.size() > 0) {
 
             //enemigos.get(0).remove();
 
             enemigos.remove(0);
         }
 
-        Log.d("XYZ DELETE","Enemigos: " + enemigos.toString());
+        Log.d("XYZ DELETE", "Enemigos: " + enemigos.toString());
     }
 
 
+    public void pause() {
+        enemiesStarted = false;
+    }
 }

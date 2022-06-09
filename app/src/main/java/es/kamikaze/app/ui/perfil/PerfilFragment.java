@@ -11,7 +11,7 @@
  * provide an express grant of patent rights.
  */
 
-package es.kamikaze.app.ui.bolsa;
+package es.kamikaze.app.ui.perfil;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,35 +19,37 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import es.kamikaze.app.data.model.User;
 import es.kamikaze.app.databinding.FragmentPerfilBinding;
-import es.kamikaze.components.KzTextView;
 import es.kamikaze.components.util.Extensions;
+import es.kamikaze.components.util.KzStatsFieldDC;
 
 public class PerfilFragment extends Fragment {
 
-    private PerfilViewModel bolsaViewModel;
     private FragmentPerfilBinding b;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        bolsaViewModel = new ViewModelProvider(this).get(PerfilViewModel.class);
+        KZViewModel kzViewModel = new ViewModelProvider(this).get(KZViewModel.class);
         b = FragmentPerfilBinding.inflate(inflater, container, false);
-        b.kztvNombrePersonaje.setText("John Cena");
-        b.kztvMonedas.setText("ORO: 24500");
-        b.kztvNivel.setText("LVL: 87");
 
-//        bolsaViewModel.getText().observe(getViewLifecycleOwner(), b.kztvNombrePersonaje::setText);
+        kzViewModel.readUser();
+        kzViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
+            b.kztvNombrePersonaje.setText(User.getInstanciaActual().getUsername());
+            b.kztvMonedas.setText("ORO: " + User.getInstanciaActual().getOro());
+            b.kztvNivel.setText("LVL: " + User.getInstanciaActual().getLvl());
+//            b.pbVida.setText(String.valueOf(user.getVel()));
+//            b.pbExperiencia.setText(String.valueOf(user.getExp()));
+            b.kzsfAtaque.setData(new KzStatsFieldDC("Ataque", String.valueOf(User.getInstanciaActual().getAt())));
+            b.kzsfDefensa.setData(new KzStatsFieldDC("Defensa", String.valueOf(User.getInstanciaActual().getDef())));
+            b.kzsfVelocidad.setData(new KzStatsFieldDC("Velocidad", String.valueOf(User.getInstanciaActual().getVel())));
+            Extensions.bindData(b.imgAvatar, String.valueOf(User.getInstanciaActual().getImg()));
+        });
+
         return b.getRoot();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Extensions.bindData(b.imgAvatar, "https://i.imgur.com/DvpvklR.png");
     }
 
     @Override
