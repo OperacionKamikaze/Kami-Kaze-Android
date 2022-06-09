@@ -32,28 +32,75 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/app_name" />
 
-    <es.kamikaze.components.KzTextView
-        android:id="@+id/kztvMonedas"
-        style="@style/KZTextSmallRegularBoldStyle"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="@dimen/dimen_1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/kztvNombrePersonaje"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/kztvNombrePersonaje"
-        app:layout_constraintTop_toTopOf="@+id/kztvNombrePersonaje"
-        tools:text="ORO: 0€" />
+        app:layout_constraintStart_toEndOf="@+id/lnOroLvlString"
+        app:layout_constraintTop_toTopOf="@+id/kztvNombrePersonaje">
 
-    <es.kamikaze.components.KzTextView
-        android:id="@+id/kztvNivel"
-        style="@style/KZTextSmallRegularBoldStyle"
+        <es.kamikaze.components.KzTextView
+            android:id="@+id/kztvMonedas"
+            style="@style/KZTextSmallRegularBoldStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toTopOf="@+id/kztvNivel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/kztvNombrePersonaje"
+            tools:text="91" />
+
+        <es.kamikaze.components.KzTextView
+            android:id="@+id/kztvNivel"
+            style="@style/KZTextSmallRegularBoldStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@+id/kztvNombrePersonaje"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/kztvMonedas"
+            app:layout_constraintTop_toBottomOf="@+id/kztvMonedas"
+            tools:text="309" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lnOroLvlString"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/kztvNombrePersonaje"
-        app:layout_constraintEnd_toEndOf="@+id/kztvMonedas"
-        app:layout_constraintStart_toStartOf="@+id/kztvMonedas"
-        app:layout_constraintTop_toBottomOf="@+id/kztvMonedas"
-        tools:text="LV: 1" />
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/kztvNombrePersonaje"
+        app:layout_constraintTop_toTopOf="@+id/kztvNombrePersonaje">
+
+        <es.kamikaze.components.KzTextView
+            android:id="@+id/kztvMonedasString"
+            style="@style/KZTextSmallRegularBoldStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toTopOf="@+id/kztvNivelString"
+            app:layout_constraintEnd_toStartOf="@+id/kztvMonedas"
+            app:layout_constraintStart_toEndOf="@+id/kztvNombrePersonaje"
+            app:layout_constraintTop_toTopOf="@+id/kztvNombrePersonaje"
+            tools:text="ORO: " />
+
+        <es.kamikaze.components.KzTextView
+            android:id="@+id/kztvNivelString"
+            style="@style/KZTextSmallRegularBoldStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@+id/kztvNombrePersonaje"
+            app:layout_constraintEnd_toEndOf="@+id/kztvMonedasString"
+            app:layout_constraintStart_toEndOf="@+id/kztvNombrePersonaje"
+            app:layout_constraintTop_toBottomOf="@+id/kztvMonedasString"
+            tools:text="LV: " />
+    </LinearLayout>
 
     <es.kamikaze.components.KzTextView
         android:id="@+id/kztvVida"
