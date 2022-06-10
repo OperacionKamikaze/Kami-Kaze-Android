@@ -63,7 +63,8 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
     private FragmentMapBinding binding;
     private MainActivity main;
     private LocationManager locationManager;
-    private Location localizacion;
+    private static Location localizacion;
+    private static Handler mainHandler;
 
 
     /* MAPA Y SUS METODOS */
@@ -245,7 +246,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                 .tilt(30)                   // Sets the tilt of the camera to 30 degrees
                 .build();                  // Creates a CameraPosition from the builder
         mapa.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        mapViewModel.startEnemies(this);
+        //mapViewModel.startEnemies(this);
         localizacion = location;
     }
 
@@ -261,7 +262,10 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
 
         binding = FragmentMapBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        // Get a handler that can be used to post to the main thread
+        mainHandler = new Handler(this.requireContext().getMainLooper());
 
+        mapViewModel.startEnemies(this);
         return root;
     }
 
@@ -286,23 +290,23 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
     @Override
     public void enemySpawn() {
         Random rand = new Random(); //instance of random class
-        Double lat = localizacion.getLatitude() + (Double) ((rand.nextDouble() * 5.0) - 2.5 ) / 10000;
-        Double lng = localizacion.getLongitude() + (Double) ((rand.nextDouble() * 5.0) - 2.5 ) / 10000;
-        MarkerOptions enemigoOptions = new MarkerOptions()
-                .position(new LatLng(
-                        lat,
-                        lng
-                ))
-                .title("Enemigo").icon(BitmapFromVector(main.getBaseContext()));
+        if (localizacion != null){
 
+            Double lat = localizacion.getLatitude() + (Double) ((rand.nextDouble() * 5.0) - 2.5 ) / 10000;
+            Double lng = localizacion.getLongitude() + (Double) ((rand.nextDouble() * 5.0) - 2.5 ) / 10000;
+            MarkerOptions enemigoOptions = new MarkerOptions()
+                    .position(new LatLng(
+                            lat,
+                            lng
+                    ))
+                    .title("Enemigo").icon(BitmapFromVector(main.getBaseContext()));
 
 
 
         //onClickListener
 
         //mapa.addMarker(enemigo);
-        // Get a handler that can be used to post to the main thread
-        Handler mainHandler = new Handler(requireContext().getMainLooper());
+
 
         Runnable myRunnable = new Runnable() {
             @Override
@@ -315,13 +319,15 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
             } // This is your code
         };
         mainHandler.post(myRunnable);
+
+        }
     }
 
     @Override
     public void enemyDelete(Marker enemy) {
 
 
-        Handler mainHandler = new Handler(requireContext().getMainLooper());
+        //Handler mainHandler = new Handler(requireContext().getMainLooper());
 
         Runnable myRunnable = new Runnable() {
             @Override

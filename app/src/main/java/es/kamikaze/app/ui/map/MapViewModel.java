@@ -69,7 +69,7 @@ public class MapViewModel extends ViewModel {
                             }
                         }
                     }
-                }, 0, (60 * 1000) * (rand.nextInt(3) + 1));
+                }, 0, (60 * 100) * (rand.nextInt(3) + 1));
 
             });
 
