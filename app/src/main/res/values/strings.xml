@@ -19,4 +19,5 @@
     <string name="txt_sin_conexion">No tienes conexión a internet</string>
     <string name="no_tienes_conexion_a_internet">No tienes conexion a internet</string>
     <string name="reintentar">Reintentar</string>
+    <string name="web_client_id" translatable="false">65800382453-orif1ltgsmrikc9raebmvjsrlv5e567q.apps.googleusercontent.com</string>
 </resources>
