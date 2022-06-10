@@ -39,8 +39,8 @@ public class PerfilFragment extends Fragment {
         kzViewModel.readUser();
         kzViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
             b.kztvNombrePersonaje.setText(User.getInstanciaActual().getUsername());
-            b.kztvMonedas.setText("ORO: " + User.getInstanciaActual().getOro());
-            b.kztvNivel.setText("LVL: " + User.getInstanciaActual().getLvl());
+            b.kztvMonedas.setText(String.valueOf(User.getInstanciaActual().getOro()));
+            b.kztvNivel.setText(String.valueOf(User.getInstanciaActual().getLvl()));
 //            b.pbVida.setText(String.valueOf(user.getVel()));
 //            b.pbExperiencia.setText(String.valueOf(user.getExp()));
             b.kzsfAtaque.setData(new KzStatsFieldDC("Ataque", String.valueOf(User.getInstanciaActual().getAt())));
