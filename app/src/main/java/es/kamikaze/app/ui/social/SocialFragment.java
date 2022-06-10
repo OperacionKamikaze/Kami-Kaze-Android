@@ -112,7 +112,7 @@ public class SocialFragment extends Fragment {
             /** Configura sign-in para solicitar el user's ID, email, y perfil
              básico. ID y el perfil básico están incluidos en DEFAULT_SIGN_IN.*/
             GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestIdToken(getString(R.string.web_client_id))
                     .requestEmail()
                     .build();
 
