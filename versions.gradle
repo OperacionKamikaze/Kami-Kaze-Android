@@ -21,7 +21,7 @@ ext {
     // Plugins
     gradle_plugin_version = '7.2.1'
     google_services_version = '4.3.10'
-    kotlin_plugin_version = '1.6.21'
+    kotlin_plugin_version = '1.7.0'
     mapsplaform_version = '2.0.1'
 
     // Dependencies

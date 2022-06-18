@@ -20,19 +20,19 @@
 
     <fragment
         android:id="@+id/secondTutorialFragment"
-        android:name="es.kamikaze.app.ui.tutorial.SecondTutorialFragment"
+        android:name="es.kamikaze.app.ui.tutorial.BSecondTutorialFragment"
         android:label="fragment_tutorial_second"
         tools:layout="@layout/fragment_tutorial_second" >
         <action
             android:id="@+id/action_secondTutorialFragment_to_firstTutorialFragment"
             app:destination="@id/firstTutorialFragment" />
         <action
-            android:id="@+id/action_secondTutorialFragment_to_lastTutorialFragment"
-            app:destination="@id/lastTutorialFragment" />
+            android:id="@+id/action_secondTutorialFragment_to_CThirdTutorialFragment2"
+            app:destination="@id/CThirdTutorialFragment2" />
     </fragment>
     <fragment
         android:id="@+id/firstTutorialFragment"
-        android:name="es.kamikaze.app.ui.tutorial.FirstTutorialFragment"
+        android:name="es.kamikaze.app.ui.tutorial.AFirstTutorialFragment"
         android:label="fragment_tutorial_first"
         tools:layout="@layout/fragment_tutorial_first" >
         <action
@@ -45,7 +45,31 @@
         android:label="fragment_tutorial_zlast"
         tools:layout="@layout/fragment_tutorial_zlast" >
         <action
-            android:id="@+id/action_lastTutorialFragment_to_secondTutorialFragment"
+            android:id="@+id/action_lastTutorialFragment_to_DFourthTutorialFragment"
+            app:destination="@id/DFourthTutorialFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/DFourthTutorialFragment"
+        android:name="es.kamikaze.app.ui.tutorial.DFourthTutorialFragment"
+        android:label="fragment_tutorial_fourth"
+        tools:layout="@layout/fragment_tutorial_fourth" >
+        <action
+            android:id="@+id/action_DFourthTutorialFragment_to_CThirdTutorialFragment2"
+            app:destination="@id/CThirdTutorialFragment2" />
+        <action
+            android:id="@+id/action_DFourthTutorialFragment_to_lastTutorialFragment"
+            app:destination="@id/lastTutorialFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CThirdTutorialFragment2"
+        android:name="es.kamikaze.app.ui.tutorial.CThirdTutorialFragment"
+        android:label="fragment_tutorial_third"
+        tools:layout="@layout/fragment_tutorial_third" >
+        <action
+            android:id="@+id/action_CThirdTutorialFragment2_to_secondTutorialFragment"
             app:destination="@id/secondTutorialFragment" />
+        <action
+            android:id="@+id/action_CThirdTutorialFragment2_to_DFourthTutorialFragment"
+            app:destination="@id/DFourthTutorialFragment" />
     </fragment>
 </navigation>

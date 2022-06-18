@@ -46,6 +46,8 @@ class LastTutorialFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bundle = arguments
+        val img = "https://mobwallpapershd.com/wp-content/uploads/2021/08/HD-Black-Panther-Mobile-Wallpaper.jpg"
 
         b.kzBocadillo.setData(
             "¡Hola de nuevo!", 12F, "Yo soy Carmelo, cuando estés preparado, vamos a proceder a crear a tu personaje " +
@@ -55,7 +57,9 @@ class LastTutorialFragment : Fragment() {
         b.btIrAJugar.setOnClickListener {
             val prefs = requireActivity().getSharedPreferences("userCreate", Context.MODE_PRIVATE)
             val editor = prefs.edit()
-            editor.putString("singletonUser", Gson().toJson(User.getInstancia()))
+            val newUser = User.getInstancia()
+            newUser.img = bundle?.getString("imgFirst") ?: img
+            editor.putString("singletonUser", Gson().toJson(newUser))
             kzViewModel.addUser(User.getInstanciaActual())
             editor.apply()
 
