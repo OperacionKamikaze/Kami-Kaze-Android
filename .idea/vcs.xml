@@ -12,5 +12,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/submodules/kz-components" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/submodules/kz-unity" vcs="Git" />
   </component>
 </project>

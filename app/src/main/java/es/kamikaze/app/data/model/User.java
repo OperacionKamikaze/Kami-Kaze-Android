@@ -31,6 +31,7 @@ public class User {
         vel = 1;
         ps = 15;
         exp = 0;
+        lvl = 1;
 
         //generar nombre de usuario random, hay poca posibilidad de que se repitan nombres pero deberíamos comprobar que no hay nadie con el mismo nombre antes de asignarlo
         int leftLimit = 97; // letter 'a'0
@@ -53,6 +54,7 @@ public class User {
         this.vel = vel;
         this.ps = ps;
         this.exp = exp;
+        this.lvl = lvl + 1;
     }
 
     public static User getInstanciaActual() {
@@ -151,4 +153,5 @@ public class User {
     public void setLvl(int lvl) {
         this.lvl = lvl;
     }
+
 }
