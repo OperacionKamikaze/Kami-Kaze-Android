@@ -13,6 +13,7 @@
 
 package es.kamikaze.app.data
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,16 +21,16 @@ import com.google.firebase.database.ValueEventListener
 import es.kamikaze.app.core.FirebaseDatabaseApp
 import es.kamikaze.app.data.model.User
 
-class FirebaseRepository {
+class FirebaseRepository(val user: User) {
 
     private val database = FirebaseDatabaseApp.getDatabase()
 
     fun writeNewUser(user: User) {
-        database.child(user.username).setValue(user)
+        database.child(user.id).setValue(user)
     }
 
     fun readUser(_user: MutableLiveData<User>) {
-        database.child(User.getInstanciaActual().username).addValueEventListener(object :
+        database.child(user.id).addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user = dataSnapshot.getValue(User::class.java)
@@ -38,7 +39,7 @@ class FirebaseRepository {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                println("loadPost:onCancelled ${databaseError.toException()}")
+                Log.v("XYZ loadPost:onCancelled", "${databaseError.toException()}")
             }
         })
     }

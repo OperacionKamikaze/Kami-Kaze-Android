@@ -56,7 +56,7 @@ class LastTutorialFragment : Fragment() {
             val prefs = requireActivity().getSharedPreferences("userCreate", Context.MODE_PRIVATE)
             val editor = prefs.edit()
             editor.putString("singletonUser", Gson().toJson(User.getInstancia()))
-            kzViewModel.addUser(User.getInstanciaActual())
+            kzViewModel.addUser(User.getInstancia())
             editor.apply()
 
             startActivity(Intent(context, MainActivity::class.java))

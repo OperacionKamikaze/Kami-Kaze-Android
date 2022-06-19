@@ -38,15 +38,15 @@ public class PerfilFragment extends Fragment {
 
         kzViewModel.readUser();
         kzViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
-            b.kztvNombrePersonaje.setText(User.getInstanciaActual().getUsername());
-            b.kztvMonedas.setText(String.valueOf(User.getInstanciaActual().getOro()));
-            b.kztvNivel.setText(String.valueOf(User.getInstanciaActual().getLvl()));
+            b.kztvNombrePersonaje.setText(User.getInstancia().getUsername());
+            b.kztvMonedas.setText(String.valueOf(User.getInstancia().getOro()));
+            b.kztvNivel.setText(String.valueOf(User.getInstancia().getLvl()));
 //            b.pbVida.setText(String.valueOf(user.getVel()));
 //            b.pbExperiencia.setText(String.valueOf(user.getExp()));
-            b.kzsfAtaque.setData(new KzStatsFieldDC("Ataque", String.valueOf(User.getInstanciaActual().getAt())));
-            b.kzsfDefensa.setData(new KzStatsFieldDC("Defensa", String.valueOf(User.getInstanciaActual().getDef())));
-            b.kzsfVelocidad.setData(new KzStatsFieldDC("Velocidad", String.valueOf(User.getInstanciaActual().getVel())));
-            Extensions.bindData(b.imgAvatar, String.valueOf(User.getInstanciaActual().getImg()));
+            b.kzsfAtaque.setData(new KzStatsFieldDC("Ataque", String.valueOf(User.getInstancia().getAt())));
+            b.kzsfDefensa.setData(new KzStatsFieldDC("Defensa", String.valueOf(User.getInstancia().getDef())));
+            b.kzsfVelocidad.setData(new KzStatsFieldDC("Velocidad", String.valueOf(User.getInstancia().getVel())));
+            Extensions.bindData(b.imgAvatar, String.valueOf(User.getInstancia().getImg()));
         });
 
         return b.getRoot();
