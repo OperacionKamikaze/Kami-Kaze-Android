@@ -41,8 +41,10 @@ public class PerfilFragment extends Fragment {
             b.kztvNombrePersonaje.setText(User.getInstanciaActual().getUsername());
             b.kztvMonedas.setText(String.valueOf(User.getInstanciaActual().getOro()));
             b.kztvNivel.setText(String.valueOf(User.getInstanciaActual().getLvl()));
-//            b.pbVida.setText(String.valueOf(user.getVel()));
-//            b.pbExperiencia.setText(String.valueOf(user.getExp()));
+            b.pbVida.setMax(User.getInstanciaActual().getLvl()*15);
+            b.pbVida.setProgress(User.getInstanciaActual().getPs());
+            b.pbExperiencia.setMax(20);
+            b.pbExperiencia.setProgress(10);
             b.kzsfAtaque.setData(new KzStatsFieldDC("Ataque", String.valueOf(User.getInstanciaActual().getAt())));
             b.kzsfDefensa.setData(new KzStatsFieldDC("Defensa", String.valueOf(User.getInstanciaActual().getDef())));
             b.kzsfVelocidad.setData(new KzStatsFieldDC("Velocidad", String.valueOf(User.getInstanciaActual().getVel())));
