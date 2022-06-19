@@ -14,6 +14,7 @@
 package es.kamikaze.app.data
 
 import android.content.ContentValues.TAG
+import android.media.Image
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.*
@@ -39,21 +40,25 @@ class FirebaseRepository(val user: User) {
         }
 
         val post = Post(
-            User.getInstancia().oro,
             User.getInstancia().at,
             User.getInstancia().def,
-            User.getInstancia().vel,
-            User.getInstancia().ps,
             User.getInstancia().exp,
+            user.id,
+            User.getInstancia().img,
+            User.getInstancia().level,
             User.getInstancia().lvl,
+            User.getInstancia().oro,
+            User.getInstancia().ps,
             User.getInstancia().username,
+            User.getInstancia().vel,
         )
         val postValues = post.toMap()
 
         val childUpdates = hashMapOf<String, Any>(
-            "/posts/$key" to postValues,
-            "/user-posts/$userId/$key" to postValues
+            "/$userId" to postValues
         )
+
+        Log.v(TAG, "XYZ" + childUpdates.toString())
 
         database.updateChildren(childUpdates)
     }
@@ -75,27 +80,35 @@ class FirebaseRepository(val user: User) {
 
     @IgnoreExtraProperties
     data class Post(
-        var oro: Int = 0,
+
         var at: Int = 0,
         var def: Int = 0,
-        var vel: Int = 0,
-        var ps: Int = 0,
         var exp: Int = 0,
+        var id:String = "",
+        var img: String = "",
+        var level: Int = 0,
         var lvl: Int = 0,
-        var username: String = ""
+        var oro: Int = 0,
+        var ps: Int = 0,
+        var username: String = "",
+        var vel: Int = 0,
     ) {
 
         @Exclude
         fun toMap(): Map<String, Any?> {
             return mapOf(
-                "oro" to oro,
+
                 "at" to at,
                 "def" to def,
-                "vel" to vel,
-                "ps" to ps,
                 "exp" to exp,
+                "id" to id,
+                "img" to img,
+                "level" to level,
                 "lvl" to lvl,
-                "username" to username
+                "oro" to oro,
+                "ps" to ps,
+                "username" to username,
+                "vel" to vel,
             )
         }
     }

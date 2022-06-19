@@ -34,6 +34,12 @@ class KZViewModel : ViewModel() {
         }
     }
 
+    fun editUser (user: User) {
+        viewModelScope.launch {
+            repository.writeNewPost(user)
+        }
+    }
+
     fun readUser() {
         viewModelScope.launch {
             repository.readUser(_user)
