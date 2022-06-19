@@ -19,28 +19,35 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.*
 import es.kamikaze.app.core.FirebaseDatabaseApp
 import es.kamikaze.app.data.model.User
-import java.util.stream.Collectors.toMap
 
-class FirebaseRepository {
+class FirebaseRepository(val user: User) {
 
     private val database = FirebaseDatabaseApp.getDatabase()
 
     fun writeNewUser(user: User) {
-        database.child(user.username).setValue(user)
+        database.child(user.id).setValue(user)
     }
 
     fun writeNewPost(user: User) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
-        val key = database.child(User.getInstanciaActual().username).push().key
+        val userId = user.id
+        val key = database.child(userId).push().key
         if (key == null) {
             Log.w(TAG, "Couldn't get push key for posts")
             return
         }
-        val userId = User.getInstanciaActual().username
-        val post = Post(User.getInstanciaActual().oro, User.getInstanciaActual().at, User.getInstanciaActual().def,
-            User.getInstanciaActual().vel, User.getInstanciaActual().ps, User.getInstanciaActual().exp, User
-                .getInstanciaActual().lvl)
+
+        val post = Post(
+            User.getInstancia().oro,
+            User.getInstancia().at,
+            User.getInstancia().def,
+            User.getInstancia().vel,
+            User.getInstancia().ps,
+            User.getInstancia().exp,
+            User.getInstancia().lvl,
+            User.getInstancia().username,
+        )
         val postValues = post.toMap()
 
         val childUpdates = hashMapOf<String, Any>(
@@ -52,7 +59,7 @@ class FirebaseRepository {
     }
 
     fun readUser(_user: MutableLiveData<User>) {
-        database.child(User.getInstanciaActual().username).addValueEventListener(object :
+        database.child(user.id).addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user = dataSnapshot.getValue(User::class.java)
@@ -61,7 +68,7 @@ class FirebaseRepository {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                println("loadPost:onCancelled ${databaseError.toException()}")
+                Log.v("XYZ loadPost:onCancelled", "${databaseError.toException()}")
             }
         })
     }
@@ -74,7 +81,8 @@ class FirebaseRepository {
         var vel: Int = 0,
         var ps: Int = 0,
         var exp: Int = 0,
-        var lvl: Int = 0
+        var lvl: Int = 0,
+        var username: String = ""
     ) {
 
         @Exclude
@@ -86,7 +94,8 @@ class FirebaseRepository {
                 "vel" to vel,
                 "ps" to ps,
                 "exp" to exp,
-                "lvl" to lvl
+                "lvl" to lvl,
+                "username" to username
             )
         }
     }

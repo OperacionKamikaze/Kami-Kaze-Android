@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -54,6 +55,7 @@ import java.util.Map;
 
 import es.kamikaze.app.R;
 import es.kamikaze.app.databinding.FragmentSocialBinding;
+import es.kamikaze.components.util.Extensions;
 //import es.kamikaze.components.util.Extensions;
 
 public class SocialFragment extends Fragment {
@@ -292,7 +294,9 @@ public class SocialFragment extends Fragment {
              binding.btnLogOut.setVisibility(View.VISIBLE);
              binding.tvUsername.setText(user.getDisplayName());
              binding.tvUsername.setVisibility(View.VISIBLE);
-             //Extensions.bindData(binding.imageView, user.getPhotoUrl().toString());
+
+             Extensions.bindData(binding.imgIconoGoogle, user.getPhotoUrl().toString());
+             binding.imgIconoGoogle.setVisibility(view.VISIBLE);
 
              binding.btnLoginGoogle.setVisibility(View.GONE);
              binding.lottieAnimationView2.setVisibility(View.GONE);
@@ -305,7 +309,9 @@ public class SocialFragment extends Fragment {
              binding.tvUsername.setText("");
              binding.tvUsername.setVisibility(View.GONE);
 
+             binding.imgIconoGoogle.setVisibility(view.GONE);
              /*binding.imageView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.kami_kaze_logo, null));*/
+
 
              binding.btnLoginGoogle.setVisibility(View.VISIBLE);
              binding.lottieAnimationView2.setVisibility(View.VISIBLE);

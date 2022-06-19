@@ -46,7 +46,8 @@
         android:id="@+id/fabMap"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/ico_mapa_color"
+        android:src="@drawable/ico_map"
+        app:backgroundTint="#FFC107"
         app:fabCustomSize="70dp"
         app:layout_anchor="@id/bottomBar" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

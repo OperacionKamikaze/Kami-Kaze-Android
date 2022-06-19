@@ -21,7 +21,7 @@ public class User {
 
     private static User instancia;
     private int oro, at, def, vel, ps, exp, lvl;
-    private String username, img;
+    private String id, img, username;
 
     private User() {
         instancia = this;
@@ -39,13 +39,15 @@ public class User {
         int targetStringLength = 15;
         Random random = new Random();
 
-        username = random.ints(leftLimit, rightLimit + 1)
+        id = random.ints(leftLimit, rightLimit + 1)
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString().toUpperCase();
+
+        username = id;
     }
 
-    private User(String username, int oro, int at, int def, int vel, int ps, int exp, int lvl) {
+    private User(String id, int oro, int at, int def, int vel, int ps, int exp, int lvl, String username) {
         instancia = this;
 
         this.oro = oro;
@@ -54,11 +56,8 @@ public class User {
         this.vel = vel;
         this.ps = ps;
         this.exp = exp;
-        this.lvl = lvl + 1;
-    }
-
-    public static User getInstanciaActual() {
-        return instancia;
+        this.lvl = lvl;
+        this.username = username;
     }
 
     public static synchronized User getInstancia() {
@@ -130,12 +129,12 @@ public class User {
         this.exp = exp;
     }
 
-    public String getUsername() {
-        return username;
+    public String getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImg() {
@@ -154,4 +153,11 @@ public class User {
         this.lvl = lvl;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

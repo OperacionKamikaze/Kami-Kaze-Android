@@ -60,7 +60,7 @@ class LastTutorialFragment : Fragment() {
             val newUser = User.getInstancia()
             newUser.img = bundle?.getString("imgFirst") ?: img
             editor.putString("singletonUser", Gson().toJson(newUser))
-            kzViewModel.addUser(User.getInstanciaActual())
+            kzViewModel.addUser(User.getInstancia())
             editor.apply()
 
             startActivity(Intent(context, MainActivity::class.java))
