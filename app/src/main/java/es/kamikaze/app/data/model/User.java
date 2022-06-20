@@ -15,6 +15,8 @@ package es.kamikaze.app.data.model;
 
 import java.util.Random;
 
+import es.kamikaze.app.ui.activities.MainActivity;
+
 public class User {
 
     //JAVA SINGLETONE CLASS para gestionar las variables del usuario
@@ -22,6 +24,8 @@ public class User {
     private static User instancia;
     private int oro, at, def, vel, ps, exp, lvl;
     private String id, img, username;
+    private Boolean ultimaBatalla, juegoIniciado;
+
 
     private User() {
         instancia = this;
@@ -32,7 +36,8 @@ public class User {
         ps = 15;
         exp = 0;
         lvl = 1;
-
+        ultimaBatalla = false;
+        juegoIniciado = false;
         //generar nombre de usuario random, hay poca posibilidad de que se repitan nombres pero deberíamos comprobar que no hay nadie con el mismo nombre antes de asignarlo
         int leftLimit = 97; // letter 'a'0
         int rightLimit = 122; // letter 'z'
@@ -58,7 +63,10 @@ public class User {
         this.exp = exp;
         this.lvl = lvl;
         this.username = username;
+        ultimaBatalla = false;
+        juegoIniciado = false;
     }
+
 
     public static synchronized User getInstancia() {
         if (instancia == null) {
@@ -71,15 +79,26 @@ public class User {
         User.instancia = instancia;
     }
 
+    public void putExperience(int experience){
+        while(((experience - (experience % 20)) / 20) != 0) {
+            experience -= 20;
+            levelUp();
+        }
+        this.exp += experience;
+    }
+
+    public void levelUp(){
+        this.lvl += 1;
+        this.ps = lvl * 15;
+        this.oro += 25 * this.lvl;
+        MainActivity.popupLevel();
+    }
+
+
+
     /*      GETTERS AND SETTERS        */
 
-    public int getLevel() { //los niveles subirán de 20 puntos en 20 puntos
-        int result = 0;
-        if (exp != 0) {
-            result = (exp - (exp % 20)) / 20;
-        }
-        return result;
-    }
+
 
     public int getOro() {
         return oro;
@@ -125,7 +144,7 @@ public class User {
         return exp;
     }
 
-    public void setExp(int exp) {
+    private void setExp(int exp) {
         this.exp = exp;
     }
 
@@ -159,5 +178,21 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Boolean getUltimaBatalla() {
+        return ultimaBatalla;
+    }
+
+    public void setUltimaBatalla(Boolean ultimaBatalla) {
+        this.ultimaBatalla = ultimaBatalla;
+    }
+
+    public Boolean getJuegoIniciado() {
+        return juegoIniciado;
+    }
+
+    public void setJuegoIniciado(Boolean juegoIniciado) {
+        this.juegoIniciado = juegoIniciado;
     }
 }

@@ -27,6 +27,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
 import es.kamikaze.app.R
 import es.kamikaze.app.core.Permisos
+import es.kamikaze.app.data.FirebaseRepository
 import es.kamikaze.app.data.model.User
 import es.kamikaze.app.databinding.ActivitySplashScreenBinding
 import es.kamikaze.app.ui.tutorial.TutorialActivity
@@ -42,6 +43,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         b = ActivitySplashScreenBinding.inflate(layoutInflater)
+
         mediaPlayer = MediaPlayer.create(this, R.raw.kz_splash_intro)
         mediaPlayer?.start()
         Thread.sleep(splashTimeOut)
@@ -84,6 +86,8 @@ class SplashActivity : AppCompatActivity() {
             finish()
         } else {
             User.setInstancia(Gson().fromJson(user, User::class.java))
+            val repositorio = FirebaseRepository();
+            repositorio.readUser(User.getInstancia().id)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

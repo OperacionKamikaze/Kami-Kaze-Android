@@ -128,63 +128,6 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                 }
             });
 
-            //hacemos que lacamara enfoque a nuestra localizacion
-            /*CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(new LatLng(mapa.getMyLocation().getLatitude(),mapa.getMyLocation().getLatitude()))     // Sets the center of the map
-                    .zoom(25.0f)                  // Sets the zoom
-                    .tilt(30)                   // Sets the tilt of the camera to 30 degrees
-                    .build();                 // Creates a CameraPosition from the builder
-            //mapa.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));*/
-
-            //crearMarcador(new LatLng(37.1519, -3.6231));
-
-            //LatLng sydney = new LatLng(-34, 151);
-            //googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            //mapa.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-
-
-
-
-
-
-
-            /*try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(googleMap.getCameraPosition().target)     // Sets the center of the map to Mountain View
-                    .zoom(17)                   // Sets the zoom
-                    .bearing(90)                // Sets the orientation of the camera to east
-                    .tilt(30)                   // Sets the tilt of the camera to 30 degrees
-                    .build();                  // Creates a CameraPosition from the builder
-            mapa.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));*/
-
-           /* // Turn on the My Location layer and the related control on the map.
-            updateLocationUI();
-
-            // Get the current location of the device and set the position of the map.
-            getDeviceLocation();
-
-
-            Task<Location> locationResult = fusedLocationProviderClient.getLastLocation();
-            locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
-                @Override
-                public void onComplete(@NonNull Task<Location> task) {
-                    if (task.isSuccessful()) {
-                        // Set the map's camera position to the current location of the device.
-                        lastKnownLocation = task.getResult();
-                        if (lastKnownLocation != null) {
-                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(lastKnownLocation.getLatitude(),
-                                            lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
-                        }
-                    }
-                }
-            });*/
-
         }
     };
 
