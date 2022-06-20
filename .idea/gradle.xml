@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/submodules/kz-components/kz-components" />
+            <option value="$PROJECT_DIR$/submodules/kz-unity/unityLibrary" />
+            <option value="$PROJECT_DIR$/submodules/kz-unity/unityLibrary/FirebaseApp.androidlib" />
           </set>
         </option>
       </GradleProjectSettings>

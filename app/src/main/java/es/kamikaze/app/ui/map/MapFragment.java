@@ -15,6 +15,7 @@ package es.kamikaze.app.ui.map;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -35,6 +36,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -53,8 +55,10 @@ import java.util.Objects;
 import java.util.Random;
 
 import es.kamikaze.app.databinding.FragmentMapBinding;
+import es.kamikaze.app.ui.UnityFragment;
 import es.kamikaze.app.ui.activities.MainActivity;
 import es.kamikaze.app.R;
+import es.kamikaze.app.ui.activities.UnityLaunchActivity;
 
 public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListener, LocationListener, OnEnemySpawnListener {
 
@@ -124,6 +128,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                         e.printStackTrace();
                     }
                     marker.remove();
+                    startActivity(new Intent(getContext(), UnityLaunchActivity.class));
                     return false;
                 }
             });

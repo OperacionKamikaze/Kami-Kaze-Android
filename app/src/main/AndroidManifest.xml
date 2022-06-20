@@ -21,7 +21,12 @@
         android:orientation="vertical"
         android:supportsRtl="true"
         android:theme="@style/Theme.KamiKaze"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup"
+        tools:replace="android:theme">
+        <activity
+            android:name="es.kamikaze.app.ui.activities.UnityLaunchActivity"
+            android:exported="false"
+            android:noHistory="true" />
         <activity
             android:name="es.kamikaze.app.ui.tutorial.TutorialActivity"
             android:exported="false"
@@ -35,7 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="es.kamikaze.app.ui.activities.MainActivity" />
+        <activity
+            android:name="es.kamikaze.app.ui.activities.MainActivity"
+            android:noHistory="true" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

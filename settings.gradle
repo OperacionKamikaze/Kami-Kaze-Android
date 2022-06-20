@@ -12,5 +12,7 @@
  */
 
 rootProject.name = "Kami - Kaze"
-include ':app', ':kz-components'
+include ':app', ':kz-components', ':kz-unity', ':FirebaseApp.androidlib'
 project(':kz-components').projectDir = new File('submodules/kz-components/kz-components')
+project(':kz-unity').projectDir = new File('submodules/kz-unity/unityLibrary')
+project(':FirebaseApp.androidlib').projectDir = new File('submodules/kz-unity/unityLibrary/FirebaseApp.androidlib')
