@@ -76,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
                 temp = bolsaFragment;
             } else if (itemId == R.id.navigation_social) {
                 temp = socialFragment;
-                popupLevel();
+
+                User.getInstancia().putExperience(22);
+
             }
             if (temp != null) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.navHostFragmentContainer, temp).commit();

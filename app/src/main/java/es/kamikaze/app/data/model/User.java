@@ -80,16 +80,17 @@ public class User {
     }
 
     public void putExperience(int experience){
-        this.lvl += (experience - (experience % 20)) / 20;
-        while((experience - (experience % 20) / 20) != 0) {
+        while(((experience - (experience % 20)) / 20) != 0) {
             experience -= 20;
             levelUp();
         }
-        this.exp = experience;
+        this.exp += experience;
     }
 
     public void levelUp(){
         this.lvl += 1;
+        this.ps = lvl * 15;
+        this.oro += 25 * this.lvl;
         MainActivity.popupLevel();
     }
 
@@ -143,7 +144,7 @@ public class User {
         return exp;
     }
 
-    public void setExp(int exp) {
+    private void setExp(int exp) {
         this.exp = exp;
     }
 
