@@ -1,3 +1,6 @@
 [submodule "submodules/kz-components"]
 	path = submodules/kz-components
 	url = https://github.com/OperacionKamikaze/Kami-Kaze-Android-Components.git
+[submodule "submodules/kz-unity"]
+	path = submodules/kz-unity
+	url = https://github.com/OperacionKamikaze/Kami-Kaze-Unity-Android.git
