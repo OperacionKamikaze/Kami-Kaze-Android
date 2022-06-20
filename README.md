@@ -2,7 +2,7 @@
 
 Repositorio de Android
 
-Wiki -> Desarrollado
+Información extra sobre el proyecto -> [Wiki](https://github.com/OperacionKamikaze/Kami-Kaze-Android/wiki)
 
 ## Miembros del equipo:
 
