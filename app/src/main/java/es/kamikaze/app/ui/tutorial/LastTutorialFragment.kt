@@ -22,9 +22,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.gson.Gson
-import es.kamikaze.app.ui.activities.MainActivity
-import es.kamikaze.app.databinding.FragmentTutorialZlastBinding
 import es.kamikaze.app.data.model.User
+import es.kamikaze.app.databinding.FragmentTutorialZlastBinding
+import es.kamikaze.app.ui.activities.MainActivity
 import es.kamikaze.app.ui.perfil.KZViewModel
 
 /**
@@ -37,7 +37,7 @@ class LastTutorialFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val b get() = _binding!!
-    private val kzViewModel : KZViewModel by viewModels()
+    private val kzViewModel: KZViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentTutorialZlastBinding.inflate(inflater, container, false)

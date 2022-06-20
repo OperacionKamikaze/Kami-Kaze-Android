@@ -86,7 +86,7 @@ class SplashActivity : AppCompatActivity() {
             finish()
         } else {
             User.setInstancia(Gson().fromJson(user, User::class.java))
-            val repositorio = FirebaseRepository();
+            val repositorio = FirebaseRepository()
             repositorio.readUser(User.getInstancia().id)
             startActivity(Intent(this, MainActivity::class.java))
             finish()

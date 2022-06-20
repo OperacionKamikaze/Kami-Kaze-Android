@@ -17,15 +17,14 @@ import java.util.Random;
 
 import es.kamikaze.app.ui.activities.MainActivity;
 
+/**
+ * JAVA SINGLETON CLASS para gestionar las variables del usuario.
+ */
 public class User {
-
-    //JAVA SINGLETONE CLASS para gestionar las variables del usuario
-
     private static User instancia;
     private int oro, at, def, vel, ps, exp, lvl;
     private String id, img, username;
     private Boolean ultimaBatalla, juegoIniciado;
-
 
     private User() {
         instancia = this;
@@ -79,26 +78,22 @@ public class User {
         User.instancia = instancia;
     }
 
-    public void putExperience(int experience){
-        while(((experience - (experience % 20)) / 20) != 0) {
-            experience -= 20;
+    public void putExperience(int experience) {
+        this.exp += experience;
+        while (((exp - (exp % 20)) / 20) != 0) {
+            exp -= 20;
             levelUp();
         }
-        this.exp += experience;
     }
 
-    public void levelUp(){
+    public void levelUp() {
         this.lvl += 1;
         this.ps = lvl * 15;
         this.oro += 25 * this.lvl;
         MainActivity.popupLevel();
     }
 
-
-
     /*      GETTERS AND SETTERS        */
-
-
 
     public int getOro() {
         return oro;

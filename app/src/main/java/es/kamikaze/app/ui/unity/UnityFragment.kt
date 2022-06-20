@@ -13,7 +13,6 @@
 
 package es.kamikaze.app.ui.unity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +21,6 @@ import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.unity3d.player.UnityPlayer
 import es.kamikaze.app.databinding.FragmentUnityBinding
-import es.kamikaze.app.ui.activities.MainActivity
 
 class UnityFragment : Fragment() {
 

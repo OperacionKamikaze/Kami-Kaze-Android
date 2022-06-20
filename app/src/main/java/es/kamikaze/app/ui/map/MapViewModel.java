@@ -26,32 +26,14 @@ import java.util.TimerTask;
 
 public class MapViewModel extends ViewModel {
 
-    //private MutableLiveData<String> mText;
-    //private FragmentMapBinding binding;
     private ArrayList<Marker> enemigos = new ArrayList<>();
     private Boolean enemiesStarted = false;
     private Thread generaEnemigos;
 
-
-    public MapViewModel() {
-        //mText = new MutableLiveData<>();
-        //mText.setValue("This is home fragment");
-    }
-
-    /*public LiveData<String> getText() {
-        return mText;
-    }*/
-
     public void startEnemies(OnEnemySpawnListener listener) {
-
         if (!enemiesStarted) {
             enemiesStarted = true;
             Random rand = new Random(); //instance of random class
-            /*int upperbound = 25;
-            //generate random values from 0-24
-            int int_random = rand.nextInt(upperbound);
-            double double_random = rand.nextDouble();
-            float float_random = rand.nextFloat();*/
 
             generaEnemigos = new Thread(() -> {
                 //cada intervalo aleatorio de 1 a 3 minutos crea un enemigo aleatorio
@@ -73,15 +55,14 @@ public class MapViewModel extends ViewModel {
 
             });
 
-            generaEnemigos.run();
+            generaEnemigos.start();
         }
     }
 
     public void addEnemigo(Marker enemigo) {
         enemigos.add(enemigo);
-        Log.d("XYZ", "Enemigos: " + enemigos.toString());
+        Log.d("XYZ", "Enemigos: " + enemigos);
     }
-
 
     public void deleteEnemigo() {
         if (enemigos.size() > 0) {
@@ -91,9 +72,8 @@ public class MapViewModel extends ViewModel {
             enemigos.remove(0);
         }
 
-        Log.d("XYZ DELETE", "Enemigos: " + enemigos.toString());
+        Log.d("XYZ DELETE", "Enemigos: " + enemigos);
     }
-
 
     public void pause() {
         enemiesStarted = false;

@@ -16,9 +16,7 @@ package es.kamikaze.app.ui.map;
 import com.google.android.gms.maps.model.Marker;
 
 public interface OnEnemySpawnListener {
-
     void enemySpawn();
 
     void enemyDelete(Marker enemy);
-
 }

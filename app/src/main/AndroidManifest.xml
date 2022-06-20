@@ -26,7 +26,9 @@
         <activity
             android:name="es.kamikaze.app.ui.activities.UnityLaunchActivity"
             android:exported="false"
-            android:noHistory="true" />
+            android:launchMode="singleTask"
+            android:process=":unityplayer"
+            android:noHistory="false" />
         <activity
             android:name="es.kamikaze.app.ui.tutorial.TutorialActivity"
             android:exported="false"
@@ -42,7 +44,7 @@
         </activity>
         <activity
             android:name="es.kamikaze.app.ui.activities.MainActivity"
-            android:noHistory="true" />
+            android:noHistory="false" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

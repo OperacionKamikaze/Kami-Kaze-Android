@@ -25,7 +25,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,6 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -50,27 +48,25 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Random;
 
-import es.kamikaze.app.databinding.FragmentMapBinding;
-import es.kamikaze.app.ui.UnityFragment;
-import es.kamikaze.app.ui.activities.MainActivity;
 import es.kamikaze.app.R;
+import es.kamikaze.app.data.model.User;
+import es.kamikaze.app.databinding.FragmentMapBinding;
+import es.kamikaze.app.ui.activities.MainActivity;
 import es.kamikaze.app.ui.activities.UnityLaunchActivity;
+import es.kamikaze.app.ui.perfil.KZViewModel;
 
 public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListener, LocationListener, OnEnemySpawnListener {
 
     public static GoogleMap mapa;
+    private static Location localizacion;
+    private static Handler mainHandler;
     private MapViewModel mapViewModel;
     private FragmentMapBinding binding;
     private MainActivity main;
     private LocationManager locationManager;
-    private static Location localizacion;
-    private static Handler mainHandler;
-
-
+    private KZViewModel kzViewModel;
     /* MAPA Y SUS METODOS */
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -106,7 +102,6 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                     return;
                 }
 
-
                 mapa.setMyLocationEnabled(true);
                 locationManager = (LocationManager) main.getSystemService(Context.LOCATION_SERVICE);
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 100, MapFragment.this);
@@ -116,11 +111,9 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                 @Override
                 public boolean onMarkerClick(@NonNull Marker marker) {
                     marker.remove();
-                    Toast.makeText(MapFragment.this.getContext(), "UNITY AL ATAKE", Toast.LENGTH_LONG).show();
 
-
-
-
+                    User.getInstancia().setJuegoIniciado(true);
+                    kzViewModel.editUser(User.getInstancia());
 
                     try {
                         Thread.sleep(500);
@@ -128,11 +121,10 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                         e.printStackTrace();
                     }
                     marker.remove();
-                    startActivity(new Intent(getContext(), UnityLaunchActivity.class));
+                    startActivityForResult(new Intent(getContext(), UnityLaunchActivity.class), 0);
                     return false;
                 }
             });
-
         }
     };
 
@@ -141,12 +133,9 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
         Toast.makeText(main.getBaseContext(), mapa.getCameraPosition().toString(), Toast.LENGTH_SHORT).show();
     }
 
-
     public void crearMarcador(LatLng position) {
         //En nuestra app pueden haber varios tipos de criaturas que aparecerán
         mapa.addMarker(new MarkerOptions().position(position).title("Enemigo").icon(BitmapFromVector(main.getBaseContext())));
-
-
     }
 
     //metodo usado para cambiar la imagen de los marcadores
@@ -156,13 +145,13 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
         int numero = rand.nextInt(5);
         if (numero < 1) {
             vectorResId = R.drawable.ico_monster4;
-        }else if (numero < 2) {
+        } else if (numero < 2) {
             vectorResId = R.drawable.ico_monster5;
-        }else if (numero < 3) {
+        } else if (numero < 3) {
             vectorResId = R.drawable.ico_monster6;
-        }else if (numero < 4) {
+        } else if (numero < 4) {
             vectorResId = R.drawable.ico_monster7;
-        }else{
+        } else {
             vectorResId = R.drawable.ico_monster4;
         }
 
@@ -198,16 +187,11 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
         localizacion = location;
     }
 
-
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mapViewModel = new ViewModelProvider(this).get(MapViewModel.class);
-
-
-
+        kzViewModel = new ViewModelProvider(this).get(KZViewModel.class);
         binding = FragmentMapBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         // Get a handler that can be used to post to the main thread
@@ -238,10 +222,9 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
     @Override
     public void enemySpawn() {
         Random rand = new Random(); //instance of random class
-        if (localizacion != null){
-
-            Double lat = localizacion.getLatitude() + (Double) ((rand.nextDouble() * 5.0) - 2.5 ) / 10000;
-            Double lng = localizacion.getLongitude() + (Double) ((rand.nextDouble() * 5.0) - 2.5 ) / 10000;
+        if (localizacion != null) {
+            double lat = localizacion.getLatitude() + ((rand.nextDouble() * 5.0) - 2.5) / 10000;
+            double lng = localizacion.getLongitude() + ((rand.nextDouble() * 5.0) - 2.5) / 10000;
             MarkerOptions enemigoOptions = new MarkerOptions()
                     .position(new LatLng(
                             lat,
@@ -249,32 +232,23 @@ public class MapFragment extends Fragment implements GoogleMap.OnCameraIdleListe
                     ))
                     .title("Enemigo").icon(BitmapFromVector(main.getBaseContext()));
 
+            //onClickListener
+            //mapa.addMarker(enemigo);
 
-
-        //onClickListener
-
-        //mapa.addMarker(enemigo);
-
-
-        Runnable myRunnable = new Runnable() {
-            @Override
-            public void run() {
-                Marker enemigo;
-                enemigo = mapa.addMarker( enemigoOptions );
-                mapViewModel.addEnemigo(enemigo);
-
-
-            } // This is your code
-        };
-        mainHandler.post(myRunnable);
-
+            Runnable myRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    Marker enemigo;
+                    enemigo = mapa.addMarker(enemigoOptions);
+                    mapViewModel.addEnemigo(enemigo);
+                } // This is your code
+            };
+            mainHandler.post(myRunnable);
         }
     }
 
     @Override
     public void enemyDelete(Marker enemy) {
-
-
         //Handler mainHandler = new Handler(requireContext().getMainLooper());
 
         Runnable myRunnable = new Runnable() {
