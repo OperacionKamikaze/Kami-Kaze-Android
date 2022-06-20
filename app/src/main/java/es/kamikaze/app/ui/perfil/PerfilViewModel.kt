@@ -30,7 +30,13 @@ class KZViewModel : ViewModel() {
 
     fun addUser(user: User) {
         viewModelScope.launch {
-            repository.writeNewUser(user)
+            repository.writeUser(user)
+        }
+    }
+
+    fun editUser(user: User) {
+        viewModelScope.launch {
+            repository.writeUser(user)
         }
     }
 

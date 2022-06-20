@@ -20,21 +20,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import es.kamikaze.app.R
-import es.kamikaze.app.databinding.FragmentTutorialSecondBinding
+import es.kamikaze.app.databinding.FragmentTutorialThirdBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class SecondTutorialFragment : Fragment() {
+class CThirdTutorialFragment : Fragment() {
 
-    private var _binding: FragmentTutorialSecondBinding? = null
+    private var _binding: FragmentTutorialThirdBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val b get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentTutorialSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentTutorialThirdBinding.inflate(inflater, container, false)
         return b.root
     }
 
@@ -42,12 +42,13 @@ class SecondTutorialFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         b.kzBocadillo.setData(
-            "", 18F, "Mira bien el mapa\nEstate atento a tu alrededor\n", 15F
+            "Imagen de perfil", 18F, "Ahora en la siguiente pantalla, tendrás que elegir que foto prefieres de perfil" +
+                    " para tu personaje.", 15F
         )
         b.kzBocadillo.setUnderlineTitle()
         b.kzBocadillo.setDescriptionMargin(null, null, null, null)
         b.btIrAJugar.setOnClickListener {
-            findNavController().navigate(R.id.action_secondTutorialFragment_to_lastTutorialFragment)
+            findNavController().navigate(R.id.action_CThirdTutorialFragment2_to_DFourthTutorialFragment)
         }
     }
 

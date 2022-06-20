@@ -15,13 +15,16 @@ package es.kamikaze.app.data.model;
 
 import java.util.Random;
 
+import es.kamikaze.app.ui.activities.MainActivity;
+
+/**
+ * JAVA SINGLETON CLASS para gestionar las variables del usuario.
+ */
 public class User {
-
-    //JAVA SINGLETONE CLASS para gestionar las variables del usuario
-
     private static User instancia;
     private int oro, at, def, vel, ps, exp, lvl;
-    private String username, img;
+    private String id, img, username;
+    private Boolean ultimaBatalla, juegoIniciado;
 
     private User() {
         instancia = this;
@@ -31,20 +34,24 @@ public class User {
         vel = 1;
         ps = 15;
         exp = 0;
-
+        lvl = 1;
+        ultimaBatalla = false;
+        juegoIniciado = false;
         //generar nombre de usuario random, hay poca posibilidad de que se repitan nombres pero deberíamos comprobar que no hay nadie con el mismo nombre antes de asignarlo
         int leftLimit = 97; // letter 'a'0
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 15;
         Random random = new Random();
 
-        username = random.ints(leftLimit, rightLimit + 1)
+        id = random.ints(leftLimit, rightLimit + 1)
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString().toUpperCase();
+
+        username = id;
     }
 
-    private User(String username, int oro, int at, int def, int vel, int ps, int exp, int lvl) {
+    private User(String id, int oro, int at, int def, int vel, int ps, int exp, int lvl, String username) {
         instancia = this;
 
         this.oro = oro;
@@ -53,11 +60,12 @@ public class User {
         this.vel = vel;
         this.ps = ps;
         this.exp = exp;
+        this.lvl = lvl;
+        this.username = username;
+        ultimaBatalla = false;
+        juegoIniciado = false;
     }
 
-    public static User getInstanciaActual() {
-        return instancia;
-    }
 
     public static synchronized User getInstancia() {
         if (instancia == null) {
@@ -70,15 +78,22 @@ public class User {
         User.instancia = instancia;
     }
 
-    /*      GETTERS AND SETTERS        */
-
-    public int getLevel() { //los niveles subirán de 20 puntos en 20 puntos
-        int result = 0;
-        if (exp != 0) {
-            result = (exp - (exp % 20)) / 20;
+    public void putExperience(int experience) {
+        this.exp += experience;
+        while (((exp - (exp % 20)) / 20) != 0) {
+            exp -= 20;
+            levelUp();
         }
-        return result;
     }
+
+    public void levelUp() {
+        this.lvl += 1;
+        this.ps = lvl * 15;
+        this.oro += 25 * this.lvl;
+        MainActivity.popupLevel();
+    }
+
+    /*      GETTERS AND SETTERS        */
 
     public int getOro() {
         return oro;
@@ -124,16 +139,16 @@ public class User {
         return exp;
     }
 
-    public void setExp(int exp) {
+    private void setExp(int exp) {
         this.exp = exp;
     }
 
-    public String getUsername() {
-        return username;
+    public String getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImg() {
@@ -150,5 +165,29 @@ public class User {
 
     public void setLvl(int lvl) {
         this.lvl = lvl;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Boolean getUltimaBatalla() {
+        return ultimaBatalla;
+    }
+
+    public void setUltimaBatalla(Boolean ultimaBatalla) {
+        this.ultimaBatalla = ultimaBatalla;
+    }
+
+    public Boolean getJuegoIniciado() {
+        return juegoIniciado;
+    }
+
+    public void setJuegoIniciado(Boolean juegoIniciado) {
+        this.juegoIniciado = juegoIniciado;
     }
 }

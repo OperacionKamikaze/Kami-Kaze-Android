@@ -20,16 +20,18 @@
 
     <Button
         android:id="@+id/btnLogOut"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Log Out"
+        android:textColorHighlight="#434141"
+        android:textColorLink="#3E3C3C"
         android:visibility="gone"
         app:icon="@drawable/ic_baseline_exit_to_app_24"
-        app:iconGravity="top"
-        app:iconSize="40dp"
+        app:iconGravity="end"
+        app:iconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.6" />
 
@@ -61,15 +63,17 @@
 
     <Button
         android:id="@+id/btnLoginGoogle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Login with Google"
+        android:textColorHighlight="#434141"
+        android:textColorLink="#3E3C3C"
         android:visibility="visible"
         app:iconGravity="start"
         app:iconSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/tituloSocial"
         app:layout_constraintVertical_bias="0.7" />
 
@@ -86,8 +90,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/kami_kaze_logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,10 +102,24 @@
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Usuario"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imgIconoGoogle"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imgIconoGoogle"
+        app:layout_constraintTop_toTopOf="@+id/imgIconoGoogle" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgIconoGoogle"
+        android:layout_width="62dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/tvUsername"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:src="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

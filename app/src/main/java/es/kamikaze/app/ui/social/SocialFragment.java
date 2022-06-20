@@ -26,13 +26,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,20 +39,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import es.kamikaze.app.R;
 import es.kamikaze.app.databinding.FragmentSocialBinding;
-//import es.kamikaze.components.util.Extensions;
+import es.kamikaze.components.util.Extensions;
 
 public class SocialFragment extends Fragment {
 
@@ -63,7 +53,6 @@ public class SocialFragment extends Fragment {
     private final int RC_SIGN_IN = 100;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-    private SocialViewModel socialViewModel;
     private FragmentSocialBinding binding;
     private String url;
     private View view;
@@ -74,35 +63,13 @@ public class SocialFragment extends Fragment {
     private FirebaseUser user;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        /*if (view != null) {
-            ViewGroup parent = (ViewGroup) view.getParent();
-            if (parent != null)
-                parent.removeView(view);
-        }*/
-
-        socialViewModel =
-                new ViewModelProvider(this).get(SocialViewModel.class);
 
         binding = FragmentSocialBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
         //listeners
-        binding.btnLoginGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                signIn();
-            }
-        });
-        binding.btnLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                signOut();
-            }
-        });
-
+        binding.btnLoginGoogle.setOnClickListener(view -> signIn());
+        binding.btnLogOut.setOnClickListener(view -> signOut());
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         view = binding.getRoot();
@@ -123,9 +90,8 @@ public class SocialFragment extends Fragment {
              *  Scopes.PLUS_LOGIN scope hacia GoogleSignInOptions
              *  para ver la diferencia.
 
-            SignInButton signInButton = binding.btnLoginGoogle;
-            signInButton.setSize(SignInButton.SIZE_WIDE);*/
-
+             SignInButton signInButton = binding.btnLoginGoogle;
+             signInButton.setSize(SignInButton.SIZE_WIDE);*/
 
 
         } catch (InflateException e) {
@@ -134,7 +100,6 @@ public class SocialFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         //return view;
-
         return root;
     }
 
@@ -154,18 +119,12 @@ public class SocialFragment extends Fragment {
         super.onStart();
         updateUI();
         if (mAuth.getCurrentUser() != null) {
-
             user = mAuth.getCurrentUser();
-
-            writeNewUser(user.getUid(), user.getDisplayName(), user.getEmail());
-
             Log.d(TAG + TAGLOC, " -> onStart-> Usuario con sesión activa: " + user.getDisplayName() + "\n[" + mAuth.getUid() + "]");
         } else {
             Log.d(TAG + TAGLOC, " -> onStart-> Ningún usuario logeado");
         }
     }
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -202,7 +161,6 @@ public class SocialFragment extends Fragment {
                             // Sign in success, update UI with the signed-in user's information
                             user = mAuth.getCurrentUser();
                             Log.d(TAG + TAGLOC, " -> firebaseAuthWithGoogle -> Authentication Succesfull de : " + user.getDisplayName() + "\n[" + mAuth.getUid() + "]");
-                            writeNewUser(user.getUid(), user.getDisplayName(), user.getEmail());
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.d(TAG + TAGLOC, " -> firebaseAuthWithGoogle -> onComplete Error -> " + task.getException());
@@ -215,38 +173,6 @@ public class SocialFragment extends Fragment {
                 });
     }
 
-    private void writeNewUser(String userId, String name, String email) {
-
-        /*DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("users/" + userId);
-        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    Log.d(TAG + TAGLOC, " -> writeNewUser -> onDataChange: snapshot.exists");
-                    Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put("users/" + userId + "/name", name);
-                    childUpdates.put("users/" + userId + "/email", email);
-                    mDatabase.updateChildren(childUpdates);
-
-                    Log.d(TAG + TAGLOC, "onDataChange: updated last login");
-
-
-                } else {
-                    Log.i(TAG + TAGLOC, " -> writeNewUser -> onDataChange: snapshot does not exists");
-                    mDatabase.child("users").child(userId).setValue(user);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Log.e(TAG + TAGLOC, " -> writeNewUser -> onCancelled: DatabaseError" + error.toString());
-
-            }
-        });*/
-    }
-
     private void signIn() {
         Intent signInIntent = mSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -257,17 +183,8 @@ public class SocialFragment extends Fragment {
         mAuth.signOut();
 
         // Google sign out
-        mSignInClient.signOut().addOnCompleteListener(requireActivity(),
-                task -> updateUI());
+        mSignInClient.signOut().addOnCompleteListener(requireActivity(), task -> updateUI());
     }
-
-    /*private void revokeAccess() {
-        // Firebase sign out
-        mAuth.signOut();
-        // Google revoke access
-        mSignInClient.revokeAccess().addOnCompleteListener(requireActivity(),
-                task -> updateUI());
-    }*/
 
     private void showProgressBar() {
         if (mProgressDialog == null) {
@@ -287,30 +204,27 @@ public class SocialFragment extends Fragment {
 
     private void updateUI() {
         FirebaseUser user = mAuth.getCurrentUser();
-         if (user != null) {
+        if (user != null) {
+            binding.btnLogOut.setVisibility(View.VISIBLE);
+            binding.tvUsername.setText(user.getDisplayName());
+            binding.tvUsername.setVisibility(View.VISIBLE);
 
-             binding.btnLogOut.setVisibility(View.VISIBLE);
-             binding.tvUsername.setText(user.getDisplayName());
-             binding.tvUsername.setVisibility(View.VISIBLE);
-             //Extensions.bindData(binding.imageView, user.getPhotoUrl().toString());
+            Extensions.bindData(binding.imgIconoGoogle, user.getPhotoUrl().toString());
+            binding.imgIconoGoogle.setVisibility(View.VISIBLE);
 
-             binding.btnLoginGoogle.setVisibility(View.GONE);
-             binding.lottieAnimationView2.setVisibility(View.GONE);
-             binding.textView2.setVisibility(View.GONE);
-
-
+            binding.btnLoginGoogle.setVisibility(View.GONE);
+            binding.lottieAnimationView2.setVisibility(View.GONE);
+            binding.textView2.setVisibility(View.GONE);
         } else {
+            binding.btnLogOut.setVisibility(View.GONE);
+            binding.tvUsername.setText("");
+            binding.tvUsername.setVisibility(View.GONE);
 
-             binding.btnLogOut.setVisibility(View.GONE);
-             binding.tvUsername.setText("");
-             binding.tvUsername.setVisibility(View.GONE);
+            binding.imgIconoGoogle.setVisibility(View.GONE);
 
-             /*binding.imageView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.kami_kaze_logo, null));*/
-
-             binding.btnLoginGoogle.setVisibility(View.VISIBLE);
-             binding.lottieAnimationView2.setVisibility(View.VISIBLE);
-             binding.textView2.setVisibility(View.VISIBLE);
-
+            binding.btnLoginGoogle.setVisibility(View.VISIBLE);
+            binding.lottieAnimationView2.setVisibility(View.VISIBLE);
+            binding.textView2.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -22,9 +22,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.gson.Gson
-import es.kamikaze.app.ui.activities.MainActivity
-import es.kamikaze.app.databinding.FragmentTutorialZlastBinding
 import es.kamikaze.app.data.model.User
+import es.kamikaze.app.databinding.FragmentTutorialZlastBinding
+import es.kamikaze.app.ui.activities.MainActivity
 import es.kamikaze.app.ui.perfil.KZViewModel
 
 /**
@@ -37,7 +37,7 @@ class LastTutorialFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val b get() = _binding!!
-    private val kzViewModel : KZViewModel by viewModels()
+    private val kzViewModel: KZViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentTutorialZlastBinding.inflate(inflater, container, false)
@@ -46,6 +46,8 @@ class LastTutorialFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bundle = arguments
+        val img = "https://mobwallpapershd.com/wp-content/uploads/2021/08/HD-Black-Panther-Mobile-Wallpaper.jpg"
 
         b.kzBocadillo.setData(
             "¡Hola de nuevo!", 12F, "Yo soy Carmelo, cuando estés preparado, vamos a proceder a crear a tu personaje " +
@@ -55,8 +57,10 @@ class LastTutorialFragment : Fragment() {
         b.btIrAJugar.setOnClickListener {
             val prefs = requireActivity().getSharedPreferences("userCreate", Context.MODE_PRIVATE)
             val editor = prefs.edit()
-            editor.putString("singletonUser", Gson().toJson(User.getInstancia()))
-            kzViewModel.addUser(User.getInstanciaActual())
+            val newUser = User.getInstancia()
+            newUser.img = bundle?.getString("imgFirst") ?: img
+            editor.putString("singletonUser", Gson().toJson(newUser))
+            kzViewModel.addUser(User.getInstancia())
             editor.apply()
 
             startActivity(Intent(context, MainActivity::class.java))

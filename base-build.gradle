@@ -97,4 +97,6 @@ dependencies {
 
     // Development Libraries
     implementation project(':kz-components')
+    implementation project(':kz-unity')
+    implementation fileTree(dir: project(':kz-unity').getProjectDir().toString() + ('\\libs'), include: ['*.jar'])
 }
