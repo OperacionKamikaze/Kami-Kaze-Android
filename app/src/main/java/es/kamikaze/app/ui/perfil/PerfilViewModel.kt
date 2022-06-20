@@ -23,14 +23,14 @@ import kotlinx.coroutines.launch
 
 class KZViewModel : ViewModel() {
 
-    private val repository = FirebaseRepository(User.getInstancia())
+    private val repository = FirebaseRepository()
     private val _user = MutableLiveData<User>()
     val user: LiveData<User>
         get() = _user
 
     fun addUser(user: User) {
         viewModelScope.launch {
-            repository.writeNewUser(user)
+            repository.writeUser(user)
         }
     }
 
