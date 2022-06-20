@@ -2,7 +2,7 @@
 
 Repositorio de Android
 
-Wiki -> por desarrollar
+Wiki -> Desarrollado
 
 ## Miembros del equipo:
 
@@ -10,3 +10,7 @@ Wiki -> por desarrollar
 - Jose
 - Nico
 - Oleg
+
+## Comando para clonar el proyecto en local.
+
+``git clone --recursive https://github.com/OperacionKamikaze/Kami-Kaze-Android.git``
